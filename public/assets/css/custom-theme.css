@@ -1,0 +1,70 @@
+:root {
+    --theme-dark: #04759a;
+    --theme-accent: #08ccee;
+    --theme-medium: #029bc3;
+    --theme-light: #03b4db;
+    --theme-gradient: #0388af;
+}
+
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active,
+.show > .btn-primary.dropdown-toggle {
+    background-color: var(--theme-accent) !important;
+    border-color: var(--theme-accent) !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background-color: var(--theme-dark) !important;
+    border-color: var(--theme-dark) !important;
+}
+
+.btn-outline-primary {
+    color: var(--theme-accent) !important;
+    border-color: var(--theme-accent) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color: var(--theme-accent) !important;
+    border-color: var(--theme-accent) !important;
+    color: #fff !important;
+}
+
+.bg-primary {
+    background-color: var(--theme-dark) !important;
+}
+
+.text-primary,
+.nav-link.nav-link-style {
+    color: var(--theme-accent) !important;
+}
+
+.badge.bg-light-primary,
+.badge.badge-light-primary {
+    background-color: rgba(8, 204, 238, 0.15) !important;
+    color: var(--theme-accent) !important;
+}
+
+.header-navbar,
+.horizontal-menu-wrapper .header-navbar {
+    background: linear-gradient(90deg, var(--theme-dark), var(--theme-gradient)) !important;
+}
+
+.horizontal-menu-wrapper .navbar-brand .brand-text,
+.header-navbar .navbar-brand .brand-text {
+    color: #fff !important;
+}
+
+a,
+.navbar-nav .nav-link {
+    --bs-link-color: var(--theme-accent);
+}
+
+.btn.btn-primary:disabled,
+.btn.btn-primary.disabled {
+    background-color: var(--theme-medium) !important;
+    border-color: var(--theme-medium) !important;
+}

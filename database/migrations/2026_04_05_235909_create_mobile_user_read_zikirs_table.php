@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('mobile_user_read_zikirs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('mobile_user_id')->constrained()->cascadeOnDelete();
+            $table->string('content_id');
+            $table->timestamps();
+
+            $table->unique(['mobile_user_id', 'content_id']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('mobile_user_read_zikirs');
+    }
+};
