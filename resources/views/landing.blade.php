@@ -232,7 +232,7 @@
     <header class="top">
         <a href="/" class="logo">
             <img src="{{ asset('assets/images/logos.png') }}" alt="Tasbeeh App Logo">
-            <span>Tasbeeh App</span>
+            <span>Zikirmatik: Ezan-Dua-Kıble</span>
         </a>
         <a href="{{ route('tasbeeh.download') }}" class="btn btn-primary">Uygulamayı İndir</a>
     </header>
