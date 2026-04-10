@@ -1,21 +1,39 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\ContentVersionController;
 use App\Http\Controllers\Admin\ContentVersionIndexController;
-use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\ZikirCategoryController;
-use App\Http\Controllers\Admin\ZikirController;
+use App\Http\Controllers\Admin\DailyZikrController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DuaCategoryController;
 use App\Http\Controllers\Admin\DuaController;
-use App\Http\Controllers\Admin\PushNotificationController;
 use App\Http\Controllers\Admin\MobileUserController;
-use App\Http\Controllers\Admin\DailyZikrController;
+use App\Http\Controllers\Admin\PushNotificationController;
+use App\Http\Controllers\Admin\ZikirCategoryController;
+use App\Http\Controllers\Admin\ZikirController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
+
+Route::get('/tasbeeh-dowloand', function (Request $request) {
+    $userAgent = strtolower((string) $request->userAgent());
+
+    $appStoreUrl = (string) env('TASBEEH_APP_STORE_URL', 'https://apps.apple.com/tr/search?term=tasbeeh');
+    $playStoreUrl = (string) env('TASBEEH_PLAY_STORE_URL', 'https://play.google.com/store/search?q=tasbeeh&c=apps');
+
+    if (str_contains($userAgent, 'android')) {
+        return redirect()->away($playStoreUrl);
+    }
+
+    if (str_contains($userAgent, 'iphone') || str_contains($userAgent, 'ipad') || str_contains($userAgent, 'ipod')) {
+        return redirect()->away($appStoreUrl);
+    }
+
+    return redirect()->away($playStoreUrl);
+})->name('tasbeeh.download');
 
 Route::middleware('guest')->group(function (): void {
     Route::redirect('/login', '/admin/login')->name('login');
