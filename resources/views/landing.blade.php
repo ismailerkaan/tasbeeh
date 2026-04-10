@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasbeeh App</title>
+    <title>Zikirmatik: Ezan-Dua-Kıble</title>
     <style>
         :root {
             --bg-1: #06111e;
