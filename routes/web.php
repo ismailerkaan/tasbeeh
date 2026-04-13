@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::view('/gizlili-sozlesmesi', 'privacy-policy')->name('privacy.policy');
+Route::view('/gizlilik-sozlesmesi', 'privacy-policy')->name('privacy.policy');
 
 Route::get('/tasbeeh-dowloand', function (Request $request) {
     $userAgent = strtolower((string) $request->userAgent());
