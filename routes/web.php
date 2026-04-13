@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DailyZikrController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DuaCategoryController;
 use App\Http\Controllers\Admin\DuaController;
+use App\Http\Controllers\Admin\MobileFeedbackController;
 use App\Http\Controllers\Admin\MobileUserController;
 use App\Http\Controllers\Admin\PushNotificationController;
 use App\Http\Controllers\Admin\ZikirCategoryController;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('landing');
 });
+
+Route::view('/gizlili-sozlesmesi', 'privacy-policy')->name('privacy.policy');
 
 Route::get('/tasbeeh-dowloand', function (Request $request) {
     $userAgent = strtolower((string) $request->userAgent());
@@ -64,6 +67,9 @@ Route::middleware('auth')->group(function (): void {
         ->names('admin.push-notifications');
     Route::resource('/admin/mobile-users', MobileUserController::class)
         ->names('admin.mobile-users');
+    Route::resource('/admin/mobile-feedbacks', MobileFeedbackController::class)
+        ->only(['index', 'show', 'update'])
+        ->names('admin.mobile-feedbacks');
     Route::resource('/admin/daily-zikrs', DailyZikrController::class)
         ->except('show')
         ->names('admin.daily-zikrs');

@@ -6,6 +6,7 @@
 @php($duasActive = request()->routeIs('admin.duas.*'))
 @php($pushNotificationsActive = request()->routeIs('admin.push-notifications.*'))
 @php($mobileUsersActive = request()->routeIs('admin.mobile-users.*'))
+@php($mobileFeedbacksActive = request()->routeIs('admin.mobile-feedbacks.*'))
 @php($dailyZikrsActive = request()->routeIs('admin.daily-zikrs.*'))
 
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
@@ -77,6 +78,12 @@
                 <a class="d-flex align-items-center" href="{{ route('admin.mobile-users.index') }}">
                     <i data-feather="users"></i>
                     <span class="menu-title text-truncate">Kullanıcılar</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $mobileFeedbacksActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.mobile-feedbacks.index') }}">
+                    <i data-feather="message-square"></i>
+                    <span class="menu-title text-truncate">Geri Bildirimler</span>
                 </a>
             </li>
             <li class="nav-item {{ $dailyZikrsActive ? 'active' : '' }}">
