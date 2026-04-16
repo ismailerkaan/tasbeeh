@@ -11,7 +11,7 @@ use Throwable;
 class FirebasePushService
 {
     /**
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      * @return array{success: bool, error: string|null}
      */
     public function sendToToken(string $token, string $title, string $body, array $data = []): array
@@ -23,22 +23,27 @@ class FirebasePushService
                 (string) config('push.firebase.send_endpoint_format'),
                 $credentials['project_id']
             );
+            $payloadData = $this->stringifyData($data);
+            $messagePayload = [
+                'token' => $token,
+                'notification' => [
+                    'title' => $title,
+                    'body' => $body,
+                ],
+                'android' => [
+                    'priority' => 'HIGH',
+                ],
+            ];
+
+            if ($payloadData !== []) {
+                $messagePayload['data'] = $payloadData;
+            }
 
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer '.$accessToken,
                 'Content-Type' => 'application/json',
             ])->post((string) $endpoint, [
-                'message' => [
-                    'token' => $token,
-                    'notification' => [
-                        'title' => $title,
-                        'body' => $body,
-                    ],
-                    'data' => $this->stringifyData($data),
-                    'android' => [
-                        'priority' => 'HIGH',
-                    ],
-                ],
+                'message' => $messagePayload,
             ]);
 
             if (! $response->successful()) {
@@ -108,7 +113,7 @@ class FirebasePushService
     }
 
     /**
-     * @param array{project_id: string, client_email: string, private_key: string, token_uri: string} $credentials
+     * @param  array{project_id: string, client_email: string, private_key: string, token_uri: string}  $credentials
      */
     private function resolveAccessToken(array $credentials): string
     {
@@ -146,7 +151,7 @@ class FirebasePushService
     }
 
     /**
-     * @param array{project_id: string, client_email: string, private_key: string, token_uri: string} $credentials
+     * @param  array{project_id: string, client_email: string, private_key: string, token_uri: string}  $credentials
      */
     private function buildServiceAccountAssertion(array $credentials): string
     {
@@ -193,7 +198,7 @@ class FirebasePushService
     }
 
     /**
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      * @return array<string, string>
      */
     private function stringifyData(array $data): array
@@ -207,6 +212,7 @@ class FirebasePushService
 
             if (is_scalar($value) || $value === null) {
                 $output[$key] = Str::of((string) $value)->toString();
+
                 continue;
             }
 
