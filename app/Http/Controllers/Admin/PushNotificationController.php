@@ -32,10 +32,10 @@ class PushNotificationController extends Controller
             $request->normalizedPayload() + ['status' => PushNotification::STATUS_QUEUED]
         );
 
-        SendPushNotificationJob::dispatch($pushNotification->id);
+        SendPushNotificationJob::dispatchSync($pushNotification->id);
 
         return to_route('admin.push-notifications.index')
-            ->with('status', 'Bildirim kuyruğa alındı ve gönderim başlatıldı.');
+            ->with('status', 'Bildirim hemen gönderim için işlendi.');
     }
 
     public function edit(PushNotification $pushNotification): View|RedirectResponse

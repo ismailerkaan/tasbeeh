@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\MobileUserController;
 use App\Http\Controllers\Admin\PushNotificationController;
 use App\Http\Controllers\Admin\ZikirCategoryController;
 use App\Http\Controllers\Admin\ZikirController;
+use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::view('/gizlilik-sozlesmesi', 'privacy-policy')->name('privacy.policy');
+
+Route::get('/linkler', [TestController::class, 'index']);
 
 Route::get('/tasbeeh-dowloand', function (Request $request) {
     $userAgent = strtolower((string) $request->userAgent());
