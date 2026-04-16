@@ -9,6 +9,7 @@ use App\Jobs\SendPushNotificationJob;
 use App\Models\PushNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Throwable;
 
 class PushNotificationController extends Controller
 {
@@ -32,10 +33,24 @@ class PushNotificationController extends Controller
             $request->normalizedPayload() + ['status' => PushNotification::STATUS_QUEUED]
         );
 
-        SendPushNotificationJob::dispatchSync($pushNotification->id);
+        try {
+            SendPushNotificationJob::dispatchSync($pushNotification->id);
+        } catch (Throwable $throwable) {
+            report($throwable);
+
+            return to_route('admin.push-notifications.index')
+                ->with('error', 'Gönderim hatası: '.$throwable->getMessage());
+        }
+
+        $pushNotification->refresh();
+
+        if ($pushNotification->status === PushNotification::STATUS_FAILED) {
+            return to_route('admin.push-notifications.index')
+                ->with('error', 'Bildirim gönderilemedi: '.($pushNotification->error_message ?: 'Bilinmeyen hata'));
+        }
 
         return to_route('admin.push-notifications.index')
-            ->with('status', 'Bildirim hemen gönderim için işlendi.');
+            ->with('status', "Bildirim gönderildi. Başarılı: {$pushNotification->success_count}, Hatalı: {$pushNotification->failed_count}");
     }
 
     public function edit(PushNotification $pushNotification): View|RedirectResponse

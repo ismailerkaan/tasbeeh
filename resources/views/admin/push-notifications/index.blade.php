@@ -13,6 +13,15 @@
                 </div>
             </div>
         @endif
+        @if (session('error'))
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                        <div class="alert-body">{{ session('error') }}</div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <div class="row">
             <div class="col-12">
@@ -31,6 +40,7 @@
                                         <th>Durum</th>
                                         <th>Başarılı</th>
                                         <th>Hatalı</th>
+                                        <th>Hata Mesajı</th>
                                         <th>Gönderim Zamanı</th>
                                         <th class="text-end">İşlem</th>
                                     </tr>
@@ -59,6 +69,7 @@
                                             </td>
                                             <td>{{ $notification->success_count }}</td>
                                             <td>{{ $notification->failed_count }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit((string) $notification->error_message, 110) ?: '-' }}</td>
                                             <td>{{ optional($notification->sent_at)->format('d.m.Y H:i') ?: '-' }}</td>
                                             <td class="text-end">
                                                 @if ($notification->status === 'queued')
@@ -75,7 +86,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center text-muted">Henüz bildirim yok.</td>
+                                            <td colspan="8" class="text-center text-muted">Henüz bildirim yok.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
