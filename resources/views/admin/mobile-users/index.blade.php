@@ -32,7 +32,13 @@
                                         <th>Cihaz</th>
                                         <th>Toplam Zikir</th>
                                         <th>Okunan</th>
-                                        <th>Son Senkron</th>
+                                        <th>
+                                            <div class="d-inline-flex align-items-center gap-1">
+                                                <span>Son Senkron</span>
+                                                <a href="{{ route('admin.mobile-users.index', array_merge(request()->query(), ['sort' => 'synced_at', 'direction' => 'asc'])) }}" class="text-decoration-none {{ $sort === 'synced_at' && $direction === 'asc' ? 'fw-bold text-primary' : 'text-muted' }}" title="Artan sırala">▲</a>
+                                                <a href="{{ route('admin.mobile-users.index', array_merge(request()->query(), ['sort' => 'synced_at', 'direction' => 'desc'])) }}" class="text-decoration-none {{ $sort === 'synced_at' && $direction === 'desc' ? 'fw-bold text-primary' : 'text-muted' }}" title="Azalan sırala">▼</a>
+                                            </div>
+                                        </th>
                                         <th class="text-end">İşlem</th>
                                     </tr>
                                 </thead>

@@ -9,19 +9,39 @@ use App\Models\Dua;
 use App\Models\MobileUser;
 use App\Models\Zikir;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class MobileUserController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        $sortableColumns = [
+            'synced_at',
+            'id',
+        ];
+
+        $sort = (string) $request->query('sort', 'id');
+        $direction = strtolower((string) $request->query('direction', 'desc'));
+
+        if (! in_array($sort, $sortableColumns, true)) {
+            $sort = 'id';
+        }
+
+        if (! in_array($direction, ['asc', 'desc'], true)) {
+            $direction = 'desc';
+        }
+
         return view('admin.mobile-users.index', [
             'mobileUsers' => MobileUser::query()
                 ->with('lastZikir')
                 ->withCount(['devices', 'readZikirs', 'readDuas'])
                 ->withMax('devices as last_login_at', 'last_seen_at')
-                ->latest('id')
-                ->paginate(20),
+                ->orderBy($sort, $direction)
+                ->paginate(20)
+                ->withQueryString(),
+            'sort' => $sort,
+            'direction' => $direction,
         ]);
     }
 
