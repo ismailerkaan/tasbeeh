@@ -24,22 +24,26 @@ Route::view('/gizlilik-sozlesmesi', 'privacy-policy')->name('privacy.policy');
 
 Route::get('/linkler', [TestController::class, 'index']);
 
-Route::get('/tasbeeh-dowloand', function (Request $request) {
+Route::get('/download', function (Request $request) {
     $userAgent = strtolower((string) $request->userAgent());
 
-    $appStoreUrl = (string) env('TASBEEH_APP_STORE_URL', 'https://apps.apple.com/tr/search?term=tasbeeh');
-    $playStoreUrl = (string) env('TASBEEH_PLAY_STORE_URL', 'https://play.google.com/store/search?q=tasbeeh&c=apps');
+    $appStoreUrl = (string) env('TASBEEH_APP_STORE_URL', 'https://apps.apple.com/tr/app/zikirmatik-ezan-vakitleri/id6761338327?l=tr');
+    $playStoreUrl = (string) env('TASBEEH_PLAY_STORE_URL', 'https://play.google.com/store/apps/details?id=com.ismailerkan.tasbeehapp');
 
     if (str_contains($userAgent, 'android')) {
         return redirect()->away($playStoreUrl);
     }
 
-    if (str_contains($userAgent, 'iphone') || str_contains($userAgent, 'ipad') || str_contains($userAgent, 'ipod')) {
+    if (str_contains($userAgent, 'iphone') || str_contains($userAgent, 'ipad') || str_contains($userAgent, 'ipod') || str_contains($userAgent, 'mac os')) {
         return redirect()->away($appStoreUrl);
     }
 
     return redirect()->away($playStoreUrl);
 })->name('tasbeeh.download');
+
+Route::get('/tasbeeh-dowloand', function () {
+    return redirect()->route('tasbeeh.download');
+});
 
 Route::middleware('guest')->group(function (): void {
     Route::redirect('/login', '/admin/login')->name('login');
