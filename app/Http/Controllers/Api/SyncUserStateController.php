@@ -95,28 +95,31 @@ class SyncUserStateController extends Controller
                 ]
             );
 
-            MobileUserDevice::query()->updateOrCreate(
-                ['fcm_token' => $validated['fcmToken']],
-                [
-                    'mobile_user_id' => $mobileUser->id,
-                    'device_name' => data_get($validated, 'device.name'),
-                    'device_model' => data_get($validated, 'device.model'),
-                    'os' => data_get($validated, 'device.os'),
-                    'os_version' => data_get($validated, 'device.version'),
-                    'is_active' => (bool) $validated['isOptIn'],
-                    'last_seen_at' => now(),
-                ]
-            );
+            $fcmToken = trim((string) ($validated['fcmToken'] ?? ''));
+            if ($fcmToken !== '') {
+                MobileUserDevice::query()->updateOrCreate(
+                    ['fcm_token' => $fcmToken],
+                    [
+                        'mobile_user_id' => $mobileUser->id,
+                        'device_name' => data_get($validated, 'device.name'),
+                        'device_model' => data_get($validated, 'device.model'),
+                        'os' => data_get($validated, 'device.os'),
+                        'os_version' => data_get($validated, 'device.version'),
+                        'is_active' => (bool) $validated['isOptIn'],
+                        'last_seen_at' => now(),
+                    ]
+                );
 
-            DevicePushToken::query()->updateOrCreate(
-                ['token' => $validated['fcmToken']],
-                [
-                    'user_identifier' => $validated['userId'],
-                    'platform' => strtolower((string) data_get($validated, 'device.os', '')),
-                    'is_active' => (bool) $validated['isOptIn'],
-                    'last_seen_at' => now(),
-                ]
-            );
+                DevicePushToken::query()->updateOrCreate(
+                    ['token' => $fcmToken],
+                    [
+                        'user_identifier' => $validated['userId'],
+                        'platform' => strtolower((string) data_get($validated, 'device.os', '')),
+                        'is_active' => (bool) $validated['isOptIn'],
+                        'last_seen_at' => now(),
+                    ]
+                );
+            }
 
             $lastZikir = data_get($validated, 'lastZikir');
 

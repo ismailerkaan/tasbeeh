@@ -19,7 +19,7 @@ class SyncUserStateRequest extends FormRequest
     {
         return [
             'userId' => ['required', 'string', 'max:100'],
-            'fcmToken' => ['required', 'string', 'max:255'],
+            'fcmToken' => ['nullable', 'string', 'max:255'],
 
             'device' => ['required', 'array'],
             'device.name' => ['nullable', 'string', 'max:255'],
