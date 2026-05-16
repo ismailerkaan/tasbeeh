@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\MobileUserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class MobileUser extends Model
 {
-    /** @use HasFactory<\Database\Factories\MobileUserFactory> */
+    /** @use HasFactory<MobileUserFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -25,6 +26,7 @@ class MobileUser extends Model
         'daily_activity_summary',
         'zikir_version',
         'dua_version',
+        'hadis_version',
         'prayer_times_version',
         'synced_at',
     ];
@@ -44,6 +46,7 @@ class MobileUser extends Model
             'daily_activity_summary' => 'array',
             'zikir_version' => 'integer',
             'dua_version' => 'integer',
+            'hadis_version' => 'integer',
             'prayer_times_version' => 'integer',
             'synced_at' => 'datetime',
             'created_at' => 'datetime',

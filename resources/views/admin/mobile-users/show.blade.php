@@ -95,6 +95,9 @@
                                 <span class="badge bg-light-warning text-warning">
                                     <i data-feather="book-open" class="me-25"></i>Dua v{{ (int) ($mobileUser->dua_version ?? 1) }}
                                 </span>
+                                <span class="badge bg-light-danger text-danger">
+                                    <i data-feather="book" class="me-25"></i>Hadis v{{ (int) ($mobileUser->hadis_version ?? 1) }}
+                                </span>
                                 <span class="badge bg-light-info text-info">
                                     <i data-feather="clock" class="me-25"></i>Vakit v{{ (int) ($mobileUser->prayer_times_version ?? 1) }}
                                 </span>
@@ -201,6 +204,47 @@
                             </div>
                         @else
                             <p class="text-muted mb-0">Kullanıcının okuduğu dua listesi bulunmuyor.</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-12 mb-1">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0"><i data-feather="plus-circle" class="me-50"></i>Özel Zikirlerim</h4>
+                        <span class="badge bg-light-info text-info">{{ count($customZikirItems ?? []) }} kayıt</span>
+                    </div>
+                    <div class="card-body">
+                        @if (!empty($customZikirItems))
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Zikir Adı</th>
+                                            <th>İçerik ID</th>
+                                            <th>Hedef</th>
+                                            <th>Çekilen</th>
+                                            <th>Son Güncelleme</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($customZikirItems as $item)
+                                            <tr>
+                                                <td>{{ $item['name'] }}</td>
+                                                <td>{{ $item['content_id'] }}</td>
+                                                <td>{{ number_format((int) $item['target'], 0, ',', '.') }}</td>
+                                                <td>{{ number_format((int) $item['count'], 0, ',', '.') }}</td>
+                                                <td>{{ $item['updated_at']?->format('d.m.Y H:i') ?: '-' }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <p class="text-muted mb-0">Kullanıcının kayıtlı özel zikir verisi bulunmuyor.</p>
                         @endif
                     </div>
                 </div>

@@ -145,6 +145,17 @@
                             <small class="text-muted">{{ number_format((int) $versionAdoption['dua']['up_to_date_count'], 0, ',', '.') }} güncel, {{ number_format((int) $versionAdoption['dua']['outdated_count'], 0, ',', '.') }} eski</small>
                         </div>
 
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between">
+                                <span>Hadis v{{ $contentVersion->hadis_version }}</span>
+                                <span>%{{ number_format((float) $versionAdoption['hadis']['up_to_date_rate'], 1, ',', '.') }}</span>
+                            </div>
+                            <div class="progress progress-bar-danger mt-50" style="height: 8px;">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $versionAdoption['hadis']['up_to_date_rate'] }}%"></div>
+                            </div>
+                            <small class="text-muted">{{ number_format((int) $versionAdoption['hadis']['up_to_date_count'], 0, ',', '.') }} güncel, {{ number_format((int) $versionAdoption['hadis']['outdated_count'], 0, ',', '.') }} eski</small>
+                        </div>
+
                         <div>
                             <div class="d-flex justify-content-between">
                                 <span>Namaz Vakti v{{ $contentVersion->prayer_times_version }}</span>
@@ -179,6 +190,14 @@
                         <div class="d-flex justify-content-between mb-2">
                             <span class="text-muted">Aktif Dua</span>
                             <strong>{{ number_format((int) $stats['duas'], 0, ',', '.') }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Hadis Kategori</span>
+                            <strong>{{ number_format((int) $stats['hadis_categories'], 0, ',', '.') }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Aktif Hadis</span>
+                            <strong>{{ number_format((int) $stats['hadises'], 0, ',', '.') }}</strong>
                         </div>
                         <div class="border-top pt-1">
                             <small class="text-muted d-block mb-25">Son senkron:</small>
@@ -224,6 +243,51 @@
                                     @empty
                                         <tr>
                                             <td colspan="5" class="text-center text-muted">Henüz kullanıcı verisi bulunmuyor.</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0"><i data-feather="calendar" class="me-50"></i>Bugün Giriş Yapan Kullanıcılar</h4>
+                        <span class="badge bg-light-success text-success">{{ count($dailyActiveUsers) }} kullanıcı</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Kullanıcı</th>
+                                        <th>İl / İlçe</th>
+                                        <th>Toplam Zikir</th>
+                                        <th>Son Zikir</th>
+                                        <th>Bugünkü Son Giriş</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($dailyActiveUsers as $user)
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('admin.mobile-users.show', $user) }}" class="fw-bolder">
+                                                    {{ \Illuminate\Support\Str::limit($user->external_user_id, 26) }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $user->city ?: '-' }} / {{ $user->district ?: '-' }}</td>
+                                            <td>{{ number_format((int) $user->total_zikir_count, 0, ',', '.') }}</td>
+                                            <td>{{ $user->lastZikir?->name ?: '-' }}</td>
+                                            <td>{{ $user->synced_at?->format('d.m.Y H:i') ?: '-' }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted">Bugün giriş yapan kullanıcı bulunmuyor.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

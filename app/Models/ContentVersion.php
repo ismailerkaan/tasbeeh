@@ -13,6 +13,7 @@ class ContentVersion extends Model
     public const MODULES = [
         'zikir',
         'dua',
+        'hadis',
         'prayer_times',
     ];
 
@@ -22,6 +23,7 @@ class ContentVersion extends Model
     public const MODULE_COLUMN_MAP = [
         'zikir' => 'zikir_version',
         'dua' => 'dua_version',
+        'hadis' => 'hadis_version',
         'prayer_times' => 'prayer_times_version',
     ];
 
@@ -31,6 +33,7 @@ class ContentVersion extends Model
         'id',
         'zikir_version',
         'dua_version',
+        'hadis_version',
         'prayer_times_version',
     ];
 
@@ -43,6 +46,7 @@ class ContentVersion extends Model
             'id' => 'integer',
             'zikir_version' => 'integer',
             'dua_version' => 'integer',
+            'hadis_version' => 'integer',
             'prayer_times_version' => 'integer',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
@@ -57,6 +61,7 @@ class ContentVersion extends Model
             [
                 'zikir_version' => 1,
                 'dua_version' => 1,
+                'hadis_version' => 1,
                 'prayer_times_version' => 1,
             ]
         );

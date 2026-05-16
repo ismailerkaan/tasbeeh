@@ -143,10 +143,24 @@ class MobileUserController extends Controller
             })
             ->all();
 
+        $customZikirItems = \Illuminate\Support\Facades\DB::table('mobile_user_custom_zikirs')
+            ->where('mobile_user_id', $mobileUser->id)
+            ->orderByDesc('updated_at')
+            ->get(['content_id', 'name', 'target', 'count', 'updated_at'])
+            ->map(fn ($item): array => [
+                'content_id' => (string) $item->content_id,
+                'name' => (string) $item->name,
+                'target' => (int) $item->target,
+                'count' => (int) $item->count,
+                'updated_at' => $item->updated_at ? \Illuminate\Support\Carbon::parse($item->updated_at) : null,
+            ])
+            ->all();
+
         return view('admin.mobile-users.show', [
             'mobileUser' => $mobileUser,
             'readZikirItems' => $readZikirItems,
             'readDuaItems' => $readDuaItems,
+            'customZikirItems' => $customZikirItems,
         ]);
     }
 

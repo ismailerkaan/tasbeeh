@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\DailyZikrController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DuaCategoryController;
 use App\Http\Controllers\Admin\DuaController;
+use App\Http\Controllers\Admin\HadisCategoryController;
+use App\Http\Controllers\Admin\HadisController;
 use App\Http\Controllers\Admin\MobileFeedbackController;
 use App\Http\Controllers\Admin\MobileUserController;
 use App\Http\Controllers\Admin\PushNotificationController;
@@ -69,6 +71,13 @@ Route::middleware('auth')->group(function (): void {
     Route::resource('/admin/duas', DuaController::class)
         ->except('show')
         ->names('admin.duas');
+    Route::resource('/admin/hadis-categories', HadisCategoryController::class)
+        ->except('show')
+        ->names('admin.hadis-categories');
+    Route::resource('/admin/hadises', HadisController::class)
+        ->except('show')
+        ->parameters(['hadises' => 'hadis'])
+        ->names('admin.hadises');
     Route::resource('/admin/push-notifications', PushNotificationController::class)
         ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
         ->names('admin.push-notifications');

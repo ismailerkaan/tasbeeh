@@ -2,6 +2,8 @@
 
 use App\Models\Dua;
 use App\Models\DuaCategory;
+use App\Models\Hadis;
+use App\Models\HadisCategory;
 use App\Models\Zikir;
 use App\Models\ZikirCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -97,4 +99,53 @@ test('dua content endpoint returns active categories and active duas', function 
 
     expect($response->json('data'))->toHaveCount(1);
     expect($response->json('data.0.dualar'))->toHaveCount(1);
+});
+
+test('hadis content endpoint returns active categories and active hadises', function () {
+    $activeCategory = HadisCategory::query()->create([
+        'name' => 'Ahlak Hadisleri',
+        'is_active' => true,
+    ]);
+
+    Hadis::query()->create([
+        'hadis_category_id' => $activeCategory->id,
+        'source' => 'Sahih Buhari',
+        'hadis' => 'Kolaylaştırınız, zorlaştırmayınız.',
+        'turkce_meali' => 'Insanlara kolaylik gosterin.',
+        'is_active' => true,
+    ]);
+
+    Hadis::query()->create([
+        'hadis_category_id' => $activeCategory->id,
+        'source' => 'Sahih Muslim',
+        'hadis' => 'Pasif hadis',
+        'turkce_meali' => 'Pasif meal',
+        'is_active' => false,
+    ]);
+
+    $inactiveCategory = HadisCategory::query()->create([
+        'name' => 'Pasif Hadis Kategorisi',
+        'is_active' => false,
+    ]);
+
+    Hadis::query()->create([
+        'hadis_category_id' => $inactiveCategory->id,
+        'source' => 'Kaynak',
+        'hadis' => 'Gorunmemeli',
+        'turkce_meali' => 'Gorunmemeli',
+        'is_active' => true,
+    ]);
+
+    $response = $this->getJson(route('api.v1.content.hadises'));
+
+    $response
+        ->assertOk()
+        ->assertJsonPath('module', 'hadis')
+        ->assertJsonPath('data.0.kategori', 'Ahlak Hadisleri')
+        ->assertJsonPath('data.0.hadisler.0.hadis', 'Kolaylaştırınız, zorlaştırmayınız.')
+        ->assertJsonPath('data.0.hadisler.0.anlami', 'Insanlara kolaylik gosterin.')
+        ->assertJsonPath('data.0.hadisler.0.kaynak', 'Sahih Buhari');
+
+    expect($response->json('data'))->toHaveCount(1);
+    expect($response->json('data.0.hadisler'))->toHaveCount(1);
 });

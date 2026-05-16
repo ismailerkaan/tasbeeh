@@ -3,6 +3,8 @@
 use App\Models\ContentVersion;
 use App\Models\Dua;
 use App\Models\DuaCategory;
+use App\Models\Hadis;
+use App\Models\HadisCategory;
 use App\Models\MobileUser;
 use App\Models\Zikir;
 use App\Models\ZikirCategory;
@@ -58,6 +60,7 @@ test('user state sync endpoint stores user snapshot data', function () {
         ],
         'zikirVersion' => 1,
         'duaVersion' => 1,
+        'hadisVersion' => 1,
         'prayerTimesVersion' => 1,
         'updatedAt' => '2026-04-06T00:00:00Z',
     ];
@@ -85,6 +88,7 @@ test('user state sync endpoint stores user snapshot data', function () {
     expect($user?->total_zikir_count)->toBe(1419);
     expect($user?->zikir_version)->toBe(1);
     expect($user?->dua_version)->toBe(1);
+    expect($user?->hadis_version)->toBe(1);
     expect($user?->prayer_times_version)->toBe(1);
     expect($user?->current_streak)->toBe(6);
     expect($user?->best_streak)->toBe(14);
@@ -153,12 +157,24 @@ test('user state sync endpoint reports changed modules using client versions', f
         'source' => 'Hadis',
         'is_active' => true,
     ]);
+    $hadisCategory = HadisCategory::factory()->create([
+        'name' => 'Ahlak Hadisleri',
+        'is_active' => true,
+    ]);
+    $hadis = Hadis::factory()->create([
+        'hadis_category_id' => $hadisCategory->id,
+        'hadis' => 'Mumin muminin kardesidir.',
+        'turkce_meali' => 'Mumin, muminin kardesidir.',
+        'source' => 'Sahih Buhari',
+        'is_active' => true,
+    ]);
 
     ContentVersion::query()->updateOrCreate(
         ['id' => 1],
         [
             'zikir_version' => 3,
             'dua_version' => 5,
+            'hadis_version' => 6,
             'prayer_times_version' => 4,
         ]
     );
@@ -185,6 +201,7 @@ test('user state sync endpoint reports changed modules using client versions', f
         'totalZikirCount' => 0,
         'zikirVersion' => 1,
         'duaVersion' => 2,
+        'hadisVersion' => 3,
         'prayerTimesVersion' => 1,
         'updatedAt' => '2026-04-07T10:00:00Z',
     ]);
@@ -194,10 +211,12 @@ test('user state sync endpoint reports changed modules using client versions', f
         ->assertJsonPath('has_updates', true)
         ->assertJsonPath('changed_modules.0', 'zikir')
         ->assertJsonPath('changed_modules.1', 'dua')
-        ->assertJsonPath('changed_modules.2', 'prayer_times')
+        ->assertJsonPath('changed_modules.2', 'hadis')
+        ->assertJsonPath('changed_modules.3', 'prayer_times')
         ->assertJsonPath('zikirCountsTracked', 1)
         ->assertJsonPath('versions.zikir_version', 3)
         ->assertJsonPath('versions.dua_version', 5)
+        ->assertJsonPath('versions.hadis_version', 6)
         ->assertJsonPath('versions.prayer_times_version', 4)
         ->assertJsonPath('content.zikir.version', 3)
         ->assertJsonPath('content.zikir.data.0.kategori_adi', 'Gunun Zikirleri')
@@ -206,7 +225,11 @@ test('user state sync endpoint reports changed modules using client versions', f
         ->assertJsonPath('content.dua.version', 5)
         ->assertJsonPath('content.dua.data.0.kategori', 'Sabah Dualari')
         ->assertJsonPath('content.dua.data.0.dualar.0.id', $dua->id)
-        ->assertJsonPath('content.dua.data.0.dualar.0.dua', 'Allahumme inni eseluke');
+        ->assertJsonPath('content.dua.data.0.dualar.0.dua', 'Allahumme inni eseluke')
+        ->assertJsonPath('content.hadis.version', 6)
+        ->assertJsonPath('content.hadis.data.0.kategori', 'Ahlak Hadisleri')
+        ->assertJsonPath('content.hadis.data.0.hadisler.0.id', $hadis->id)
+        ->assertJsonPath('content.hadis.data.0.hadisler.0.hadis', 'Mumin muminin kardesidir.');
 });
 
 test('user state sync endpoint validates required fields', function () {

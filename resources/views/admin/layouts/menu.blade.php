@@ -4,6 +4,8 @@
 @php($zikirsActive = request()->routeIs('admin.zikirs.*'))
 @php($duaCategoriesActive = request()->routeIs('admin.dua-categories.*'))
 @php($duasActive = request()->routeIs('admin.duas.*'))
+@php($hadisCategoriesActive = request()->routeIs('admin.hadis-categories.*'))
+@php($hadisesActive = request()->routeIs('admin.hadises.*'))
 @php($pushNotificationsActive = request()->routeIs('admin.push-notifications.*'))
 @php($mobileUsersActive = request()->routeIs('admin.mobile-users.*'))
 @php($mobileFeedbacksActive = request()->routeIs('admin.mobile-feedbacks.*'))
@@ -66,6 +68,18 @@
                 <a class="d-flex align-items-center" href="{{ route('admin.duas.index') }}">
                     <i data-feather="heart"></i>
                     <span class="menu-title text-truncate">Dualar</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $hadisCategoriesActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.hadis-categories.index') }}">
+                    <i data-feather="bookmark"></i>
+                    <span class="menu-title text-truncate">Hadis Kategorileri</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $hadisesActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.hadises.index') }}">
+                    <i data-feather="book"></i>
+                    <span class="menu-title text-truncate">Hadisler</span>
                 </a>
             </li>
             <li class="nav-item {{ $pushNotificationsActive ? 'active' : '' }}">

@@ -42,6 +42,11 @@ class SyncUserStateRequest extends FormRequest
             'zikirCounts.*' => ['integer', 'min:0'],
             'readDuas' => ['nullable', 'array'],
             'readDuas.*' => ['string', 'max:100'],
+            'customZikirs' => ['nullable', 'array'],
+            'customZikirs.*.id' => ['required_with:customZikirs', 'string', 'max:100'],
+            'customZikirs.*.name' => ['required_with:customZikirs', 'string', 'max:255'],
+            'customZikirs.*.target' => ['nullable', 'integer', 'min:1'],
+            'customZikirs.*.count' => ['nullable', 'integer', 'min:0'],
 
             'isOptIn' => ['required', 'boolean'],
             'totalZikirCount' => ['required', 'integer', 'min:0'],
@@ -56,6 +61,7 @@ class SyncUserStateRequest extends FormRequest
             'dailyActivitySummary.*.completedDailyZikr' => ['nullable', 'boolean'],
             'zikirVersion' => ['nullable', 'integer', 'min:1'],
             'duaVersion' => ['nullable', 'integer', 'min:1'],
+            'hadisVersion' => ['nullable', 'integer', 'min:1'],
             'prayerTimesVersion' => ['nullable', 'integer', 'min:1'],
             'updatedAt' => ['required', 'date'],
         ];

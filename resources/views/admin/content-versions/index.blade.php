@@ -32,7 +32,7 @@
         </div>
 
         <div class="row match-height">
-            <div class="col-md-4 col-12">
+            <div class="col-md-3 col-12">
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text text-muted mb-25">Zikir İçerik Versiyonu</p>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-12">
+            <div class="col-md-3 col-12">
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text text-muted mb-25">Dua İçerik Versiyonu</p>
@@ -58,7 +58,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-12">
+            <div class="col-md-3 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text text-muted mb-25">Hadis İçerik Versiyonu</p>
+                        <h3 class="fw-bolder mb-1">v{{ $contentVersion->hadis_version }}</h3>
+                        <form method="POST" action="{{ route('admin.content-versions.bump') }}">
+                            @csrf
+                            <input type="hidden" name="module" value="hadis">
+                            <button type="submit" class="btn btn-primary w-100">Yeni Hadis Yayınla</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-12">
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text text-muted mb-25">Ezan İçerik Versiyonu</p>

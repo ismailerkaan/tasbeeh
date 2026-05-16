@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\ContentVersion;
 use App\Models\Dua;
 use App\Models\DuaCategory;
+use App\Models\Hadis;
+use App\Models\HadisCategory;
 use App\Models\MobileUser;
 use App\Models\MobileUserDevice;
 use App\Models\MobileUserReadDua;
@@ -107,6 +109,10 @@ class DashboardController extends Controller
                 $mobileUsersCount,
                 MobileUser::query()->where('dua_version', $contentVersion->dua_version)->count()
             ),
+            'hadis' => $this->buildVersionAdoption(
+                $mobileUsersCount,
+                MobileUser::query()->where('hadis_version', $contentVersion->hadis_version)->count()
+            ),
             'prayer_times' => $this->buildVersionAdoption(
                 $mobileUsersCount,
                 MobileUser::query()->where('prayer_times_version', $contentVersion->prayer_times_version)->count()
@@ -116,6 +122,13 @@ class DashboardController extends Controller
         $topUsers = MobileUser::query()
             ->with('lastZikir')
             ->orderByDesc('total_zikir_count')
+            ->orderByDesc('synced_at')
+            ->limit(8)
+            ->get();
+
+        $dailyActiveUsers = MobileUser::query()
+            ->with('lastZikir')
+            ->whereDate('synced_at', $now->toDateString())
             ->orderByDesc('synced_at')
             ->limit(8)
             ->get();
@@ -135,6 +148,8 @@ class DashboardController extends Controller
                 'zikirs' => Zikir::query()->count(),
                 'dua_categories' => DuaCategory::query()->where('is_active', true)->count(),
                 'duas' => Dua::query()->where('is_active', true)->count(),
+                'hadis_categories' => HadisCategory::query()->where('is_active', true)->count(),
+                'hadises' => Hadis::query()->where('is_active', true)->count(),
                 'last_sync_at' => MobileUser::query()->max('synced_at'),
             ],
             'versionAdoption' => $versionAdoption,
@@ -148,6 +163,7 @@ class DashboardController extends Controller
             'topZikirLabels' => $topZikirLabels,
             'topZikirValues' => $topZikirValues,
             'topUsers' => $topUsers,
+            'dailyActiveUsers' => $dailyActiveUsers,
         ]);
     }
 

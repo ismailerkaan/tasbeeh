@@ -7,13 +7,14 @@ use App\Http\Requests\Api\SyncUserStateRequest;
 use App\Models\ContentVersion;
 use App\Models\DevicePushToken;
 use App\Models\DuaCategory;
+use App\Models\HadisCategory;
 use App\Models\MobileUser;
 use App\Models\MobileUserDevice;
 use App\Models\MobileUserLastZikir;
 use App\Models\ZikirCategory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class SyncUserStateController extends Controller
@@ -25,9 +26,23 @@ class SyncUserStateController extends Controller
         $readZikirIds = $this->normalizeIdList($validated['readZikirs'] ?? []);
         $zikirCounts = $this->normalizeCountMap($validated['zikirCounts'] ?? []);
         $readDuaIds = $this->normalizeIdList($validated['readDuas'] ?? []);
+        $customZikirs = collect(is_array($validated['customZikirs'] ?? null) ? $validated['customZikirs'] : [])
+            ->filter(fn ($item): bool => is_array($item) && isset($item['id'], $item['name']))
+            ->map(function (array $item): array {
+                return [
+                    'content_id' => trim((string) $item['id']),
+                    'name' => trim((string) $item['name']),
+                    'target' => max(1, (int) ($item['target'] ?? 33)),
+                    'count' => max(0, (int) ($item['count'] ?? 0)),
+                ];
+            })
+            ->filter(fn (array $item): bool => $item['content_id'] !== '' && $item['name'] !== '')
+            ->values()
+            ->all();
         $clientVersions = [
             'zikir_version' => (int) ($validated['zikirVersion'] ?? 1),
             'dua_version' => (int) ($validated['duaVersion'] ?? 1),
+            'hadis_version' => (int) ($validated['hadisVersion'] ?? 1),
             'prayer_times_version' => (int) ($validated['prayerTimesVersion'] ?? 1),
         ];
         $streakPayload = is_array($validated['streak'] ?? null) ? $validated['streak'] : [];
@@ -49,6 +64,7 @@ class SyncUserStateController extends Controller
         $serverVersions = [
             'zikir_version' => $contentVersion->zikir_version,
             'dua_version' => $contentVersion->dua_version,
+            'hadis_version' => $contentVersion->hadis_version,
             'prayer_times_version' => $contentVersion->prayer_times_version,
         ];
         $changedModules = collect(ContentVersion::MODULE_COLUMN_MAP)
@@ -57,7 +73,7 @@ class SyncUserStateController extends Controller
             ->values();
         $contentPayload = $this->buildChangedContentPayload($changedModules, $serverVersions, $contentVersion);
 
-        DB::transaction(function () use ($validated, $syncedAt, $readZikirIds, $zikirCounts, $readDuaIds, $clientVersions, $streakPayload, $dailyActivitySummary): void {
+        DB::transaction(function () use ($validated, $syncedAt, $readZikirIds, $zikirCounts, $readDuaIds, $customZikirs, $clientVersions, $streakPayload, $dailyActivitySummary): void {
             /** @var MobileUser $mobileUser */
             $mobileUser = MobileUser::query()->updateOrCreate(
                 ['external_user_id' => $validated['userId']],
@@ -73,6 +89,7 @@ class SyncUserStateController extends Controller
                     'daily_activity_summary' => $dailyActivitySummary === [] ? null : $dailyActivitySummary,
                     'zikir_version' => $clientVersions['zikir_version'],
                     'dua_version' => $clientVersions['dua_version'],
+                    'hadis_version' => $clientVersions['hadis_version'],
                     'prayer_times_version' => $clientVersions['prayer_times_version'],
                     'synced_at' => $syncedAt,
                 ]
@@ -169,6 +186,27 @@ class SyncUserStateController extends Controller
                     )
                 );
             }
+
+            DB::table('mobile_user_custom_zikirs')
+                ->where('mobile_user_id', $mobileUser->id)
+                ->delete();
+
+            if ($customZikirs !== []) {
+                DB::table('mobile_user_custom_zikirs')->insert(
+                    array_map(
+                        fn (array $item): array => [
+                            'mobile_user_id' => $mobileUser->id,
+                            'content_id' => $item['content_id'],
+                            'name' => $item['name'],
+                            'target' => $item['target'],
+                            'count' => $item['count'],
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ],
+                        $customZikirs
+                    )
+                );
+            }
         });
 
         return response()->json([
@@ -177,6 +215,7 @@ class SyncUserStateController extends Controller
             'readZikirsCount' => count($readZikirIds),
             'zikirCountsTracked' => count($zikirCounts),
             'readDuasCount' => count($readDuaIds),
+            'customZikirsCount' => count($customZikirs),
             'totalZikirCount' => (int) $validated['totalZikirCount'],
             'streak' => [
                 'current' => (int) ($streakPayload['current'] ?? 0),
@@ -193,9 +232,9 @@ class SyncUserStateController extends Controller
     }
 
     /**
-     * @param Collection<int, string> $changedModules
-     * @param array{zikir_version: int, dua_version: int, prayer_times_version: int} $serverVersions
-     * @return array{zikir?: array{version: int, updated_at: ?string, data: array<int, array<string, mixed>>}, dua?: array{version: int, updated_at: ?string, data: array<int, array<string, mixed>>}}
+     * @param  Collection<int, string>  $changedModules
+     * @param  array{zikir_version: int, dua_version: int, hadis_version: int, prayer_times_version: int}  $serverVersions
+     * @return array{zikir?: array{version: int, updated_at: ?string, data: array<int, array<string, mixed>>}, dua?: array{version: int, updated_at: ?string, data: array<int, array<string, mixed>>}, hadis?: array{version: int, updated_at: ?string, data: array<int, array<string, mixed>>}}
      */
     private function buildChangedContentPayload(Collection $changedModules, array $serverVersions, ContentVersion $contentVersion): array
     {
@@ -214,6 +253,14 @@ class SyncUserStateController extends Controller
                 'version' => $serverVersions['dua_version'],
                 'updated_at' => $contentVersion->updated_at?->toIso8601String(),
                 'data' => $this->buildDuaData(),
+            ];
+        }
+
+        if ($changedModules->contains('hadis')) {
+            $payload['hadis'] = [
+                'version' => $serverVersions['hadis_version'],
+                'updated_at' => $contentVersion->updated_at?->toIso8601String(),
+                'data' => $this->buildHadisData(),
             ];
         }
 
@@ -277,7 +324,33 @@ class SyncUserStateController extends Controller
     }
 
     /**
-     * @param mixed $values
+     * @return array<int, array<string, mixed>>
+     */
+    private function buildHadisData(): array
+    {
+        return HadisCategory::query()
+            ->where('is_active', true)
+            ->with(['hadises' => fn ($query) => $query->where('is_active', true)->orderBy('id')])
+            ->orderBy('id')
+            ->get()
+            ->map(function (HadisCategory $category): array {
+                return [
+                    'kategori' => $category->name,
+                    'hadisler' => $category->hadises->map(function ($hadis): array {
+                        return [
+                            'id' => (int) $hadis->id,
+                            'hadis' => (string) $hadis->hadis,
+                            'anlami' => (string) $hadis->turkce_meali,
+                            'kaynak' => (string) $hadis->source,
+                        ];
+                    })->values()->all(),
+                ];
+            })
+            ->values()
+            ->all();
+    }
+
+    /**
      * @return list<string>
      */
     private function normalizeIdList(mixed $values): array
@@ -292,7 +365,6 @@ class SyncUserStateController extends Controller
     }
 
     /**
-     * @param mixed $values
      * @return array<string, int>
      */
     private function normalizeCountMap(mixed $values): array

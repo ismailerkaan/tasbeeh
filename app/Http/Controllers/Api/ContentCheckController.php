@@ -14,6 +14,7 @@ class ContentCheckController extends Controller
         $validated = $request->validate([
             'zikir_version' => ['nullable', 'integer', 'min:1'],
             'dua_version' => ['nullable', 'integer', 'min:1'],
+            'hadis_version' => ['nullable', 'integer', 'min:1'],
             'prayer_times_version' => ['nullable', 'integer', 'min:1'],
         ]);
 
@@ -21,6 +22,7 @@ class ContentCheckController extends Controller
         $serverVersions = [
             'zikir_version' => $contentVersion->zikir_version,
             'dua_version' => $contentVersion->dua_version,
+            'hadis_version' => $contentVersion->hadis_version,
             'prayer_times_version' => $contentVersion->prayer_times_version,
         ];
 

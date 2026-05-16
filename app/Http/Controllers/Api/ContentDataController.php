@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\ContentVersion;
 use App\Models\DuaCategory;
+use App\Models\HadisCategory;
 use App\Models\ZikirCategory;
 use Illuminate\Http\JsonResponse;
 
@@ -65,6 +66,36 @@ class ContentDataController extends Controller
                             'dua' => (string) $dua->dua,
                             'anlami' => (string) $dua->turkce_meali,
                             'kaynak' => (string) $dua->source,
+                        ];
+                    })->values(),
+                ];
+            })->values(),
+        ]);
+    }
+
+    public function hadises(): JsonResponse
+    {
+        $contentVersion = ContentVersion::current();
+
+        $categories = HadisCategory::query()
+            ->where('is_active', true)
+            ->with(['hadises' => fn ($query) => $query->where('is_active', true)->orderBy('id')])
+            ->orderBy('id')
+            ->get();
+
+        return response()->json([
+            'module' => 'hadis',
+            'version' => $contentVersion->hadis_version,
+            'updated_at' => $contentVersion->updated_at?->toIso8601String(),
+            'data' => $categories->map(function (HadisCategory $category): array {
+                return [
+                    'kategori' => $category->name,
+                    'hadisler' => $category->hadises->map(function ($hadis): array {
+                        return [
+                            'id' => (int) $hadis->id,
+                            'hadis' => (string) $hadis->hadis,
+                            'anlami' => (string) $hadis->turkce_meali,
+                            'kaynak' => (string) $hadis->source,
                         ];
                     })->values(),
                 ];
