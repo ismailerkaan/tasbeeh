@@ -18,7 +18,7 @@ class StoreMobileFeedbackRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => ['required', 'string', 'max:255'],
+            'full_name' => ['nullable', 'string', 'max:255'],
             'message' => ['required', 'string', 'max:5000'],
             'user_id' => ['nullable', 'string', 'max:100'],
             'fcm_token' => ['nullable', 'string', 'max:255'],
@@ -28,5 +28,14 @@ class StoreMobileFeedbackRequest extends FormRequest
             'city' => ['nullable', 'string', 'max:100'],
             'district' => ['nullable', 'string', 'max:100'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'full_name' => trim((string) ($this->input('full_name') ?? '')),
+            'message' => trim((string) ($this->input('message') ?? '')),
+            'platform' => strtolower(trim((string) ($this->input('platform') ?? ''))),
+        ]);
     }
 }

@@ -16,7 +16,7 @@ class StoreMobileFeedbackController extends Controller
         /** @var MobileFeedback $feedback */
         $feedback = MobileFeedback::query()->create([
             'user_identifier' => $validated['user_id'] ?? null,
-            'full_name' => $validated['full_name'],
+            'full_name' => filled($validated['full_name'] ?? null) ? $validated['full_name'] : 'Anonim Kullanıcı',
             'message' => $validated['message'],
             'fcm_token' => $validated['fcm_token'] ?? null,
             'platform' => $validated['platform'] ?? null,
