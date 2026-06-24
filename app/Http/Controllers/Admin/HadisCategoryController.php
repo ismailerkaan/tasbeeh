@@ -15,7 +15,8 @@ class HadisCategoryController extends Controller
     {
         return view('admin.hadis-categories.index', [
             'hadisCategories' => HadisCategory::query()
-                ->latest('id')
+                ->orderBy('sort_order')
+                ->orderBy('id')
                 ->paginate(15),
         ]);
     }

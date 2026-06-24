@@ -1,9 +1,14 @@
 <?php
 
 use App\Models\ZikirCategory;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
+
+beforeEach(function (): void {
+    $this->actingAs(User::factory()->create());
+});
 
 test('zikir categories index page is accessible from admin', function () {
     $response = $this->get(route('admin.zikir-categories.index'));
@@ -18,6 +23,7 @@ test('admin can create zikir category', function () {
     $response = $this->post(route('admin.zikir-categories.store'), [
         'name' => 'Sabah Zikirleri',
         'description' => 'Sabah okunacak zikirler',
+        'sort_order' => '10',
         'is_active' => '1',
     ]);
 
@@ -26,6 +32,7 @@ test('admin can create zikir category', function () {
     $this->assertDatabaseHas('zikir_categories', [
         'name' => 'Sabah Zikirleri',
         'description' => 'Sabah okunacak zikirler',
+        'sort_order' => 10,
         'is_active' => 1,
     ]);
 });
@@ -39,6 +46,7 @@ test('admin can update zikir category', function () {
     $response = $this->put(route('admin.zikir-categories.update', $zikirCategory), [
         'name' => 'Yeni Ad',
         'description' => 'Guncel aciklama',
+        'sort_order' => '5',
         'is_active' => '0',
     ]);
 
@@ -48,6 +56,7 @@ test('admin can update zikir category', function () {
         'id' => $zikirCategory->id,
         'name' => 'Yeni Ad',
         'description' => 'Guncel aciklama',
+        'sort_order' => 5,
         'is_active' => 0,
     ]);
 });

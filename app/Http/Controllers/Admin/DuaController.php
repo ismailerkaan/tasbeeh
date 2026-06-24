@@ -72,6 +72,7 @@ class DuaController extends Controller
                     $query->orWhere('id', $selectedCategoryId);
                 }
             })
+            ->orderBy('sort_order')
             ->orderBy('name')
             ->get();
     }

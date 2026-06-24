@@ -13,6 +13,7 @@ class ZikirCategory extends Model
 
     protected $fillable = [
         'name',
+        'sort_order',
         'description',
         'is_active',
     ];
@@ -24,6 +25,7 @@ class ZikirCategory extends Model
     {
         return [
             'is_active' => 'boolean',
+            'sort_order' => 'integer',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

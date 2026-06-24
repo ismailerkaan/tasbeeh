@@ -28,6 +28,7 @@
                                     <tr>
                                         <th>Kategori Adı</th>
                                         <th>Açıklama</th>
+                                        <th>Sıra</th>
                                         <th>Durum</th>
                                         <th class="text-end">İşlem</th>
                                     </tr>
@@ -37,6 +38,7 @@
                                         <tr>
                                             <td>{{ $zikirCategory->name }}</td>
                                             <td>{{ $zikirCategory->description ?: '-' }}</td>
+                                            <td><span class="badge bg-light-primary text-primary">{{ $zikirCategory->sort_order }}</span></td>
                                             <td>
                                                 @if ($zikirCategory->is_active)
                                                     <span class="badge bg-light-success text-success">Aktif</span>
@@ -55,7 +57,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center text-muted">Henüz kategori yok.</td>
+                                            <td colspan="5" class="text-center text-muted">Henüz kategori yok.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

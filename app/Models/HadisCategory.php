@@ -14,6 +14,7 @@ class HadisCategory extends Model
 
     protected $fillable = [
         'name',
+        'sort_order',
         'is_active',
     ];
 
@@ -24,6 +25,7 @@ class HadisCategory extends Model
     {
         return [
             'is_active' => 'boolean',
+            'sort_order' => 'integer',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

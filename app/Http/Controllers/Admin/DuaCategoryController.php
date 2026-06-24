@@ -15,7 +15,8 @@ class DuaCategoryController extends Controller
     {
         return view('admin.dua-categories.index', [
             'duaCategories' => DuaCategory::query()
-                ->latest('id')
+                ->orderBy('sort_order')
+                ->orderBy('id')
                 ->paginate(15),
         ]);
     }

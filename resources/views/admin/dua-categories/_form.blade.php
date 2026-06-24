@@ -20,6 +20,17 @@
     </div>
 
     <div class="col-12">
+        <div class="mb-1">
+            <label class="form-label" for="sort_order">Sıralama</label>
+            <input id="sort_order" type="number" name="sort_order" min="0" max="65535"
+                   class="form-control @error('sort_order') is-invalid @enderror"
+                   value="{{ old('sort_order', $duaCategory->sort_order ?? 0) }}" required>
+            <div class="form-text">Küçük sayı uygulamada daha önce gösterilir.</div>
+            @error('sort_order')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        </div>
+    </div>
+
+    <div class="col-12">
         <div class="form-check form-switch mb-2">
             <input
                 id="is_active"

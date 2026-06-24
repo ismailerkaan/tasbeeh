@@ -149,3 +149,35 @@ test('hadis content endpoint returns active categories and active hadises', func
     expect($response->json('data'))->toHaveCount(1);
     expect($response->json('data.0.hadisler'))->toHaveCount(1);
 });
+
+test('content endpoints order categories by admin sort order', function () {
+    foreach ([
+        [ZikirCategory::class, 'Son Zikir Kategorisi', 20],
+        [ZikirCategory::class, 'İlk Zikir Kategorisi', 10],
+        [DuaCategory::class, 'Son Dua Kategorisi', 20],
+        [DuaCategory::class, 'İlk Dua Kategorisi', 10],
+        [HadisCategory::class, 'Son Hadis Kategorisi', 20],
+        [HadisCategory::class, 'İlk Hadis Kategorisi', 10],
+    ] as [$model, $name, $sortOrder]) {
+        $model::query()->create([
+            'name' => $name,
+            'sort_order' => $sortOrder,
+            'is_active' => true,
+        ]);
+    }
+
+    $this->getJson(route('api.v1.content.zikirs'))
+        ->assertOk()
+        ->assertJsonPath('data.0.kategori_adi', 'İlk Zikir Kategorisi')
+        ->assertJsonPath('data.1.kategori_adi', 'Son Zikir Kategorisi');
+
+    $this->getJson(route('api.v1.content.duas'))
+        ->assertOk()
+        ->assertJsonPath('data.0.kategori', 'İlk Dua Kategorisi')
+        ->assertJsonPath('data.1.kategori', 'Son Dua Kategorisi');
+
+    $this->getJson(route('api.v1.content.hadises'))
+        ->assertOk()
+        ->assertJsonPath('data.0.kategori', 'İlk Hadis Kategorisi')
+        ->assertJsonPath('data.1.kategori', 'Son Hadis Kategorisi');
+});

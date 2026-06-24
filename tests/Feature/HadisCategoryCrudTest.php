@@ -22,6 +22,7 @@ test('hadis categories index page is accessible from admin', function () {
 test('admin can create hadis category', function () {
     $response = $this->post(route('admin.hadis-categories.store'), [
         'name' => 'Iman Hadisleri',
+        'sort_order' => '10',
         'is_active' => '1',
     ]);
 
@@ -29,6 +30,7 @@ test('admin can create hadis category', function () {
 
     $this->assertDatabaseHas('hadis_categories', [
         'name' => 'Iman Hadisleri',
+        'sort_order' => 10,
         'is_active' => 1,
     ]);
 });
@@ -41,6 +43,7 @@ test('admin can update hadis category', function () {
 
     $response = $this->put(route('admin.hadis-categories.update', $hadisCategory), [
         'name' => 'Yeni Ad',
+        'sort_order' => '5',
         'is_active' => '0',
     ]);
 
@@ -49,6 +52,7 @@ test('admin can update hadis category', function () {
     $this->assertDatabaseHas('hadis_categories', [
         'id' => $hadisCategory->id,
         'name' => 'Yeni Ad',
+        'sort_order' => 5,
         'is_active' => 0,
     ]);
 });

@@ -13,6 +13,7 @@ class DuaCategory extends Model
 
     protected $fillable = [
         'name',
+        'sort_order',
         'is_active',
     ];
 
@@ -23,6 +24,7 @@ class DuaCategory extends Model
     {
         return [
             'is_active' => 'boolean',
+            'sort_order' => 'integer',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

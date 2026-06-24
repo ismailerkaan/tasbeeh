@@ -18,6 +18,7 @@ class ContentDataController extends Controller
         $categories = ZikirCategory::query()
             ->where('is_active', true)
             ->with(['zikirs' => fn ($query) => $query->orderBy('id')])
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get();
 
@@ -50,6 +51,7 @@ class ContentDataController extends Controller
         $categories = DuaCategory::query()
             ->where('is_active', true)
             ->with(['duas' => fn ($query) => $query->where('is_active', true)->orderBy('id')])
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get();
 
@@ -80,6 +82,7 @@ class ContentDataController extends Controller
         $categories = HadisCategory::query()
             ->where('is_active', true)
             ->with(['hadises' => fn ($query) => $query->where('is_active', true)->orderBy('id')])
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get();
 

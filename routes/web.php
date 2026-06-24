@@ -9,9 +9,12 @@ use App\Http\Controllers\Admin\DuaCategoryController;
 use App\Http\Controllers\Admin\DuaController;
 use App\Http\Controllers\Admin\HadisCategoryController;
 use App\Http\Controllers\Admin\HadisController;
+use App\Http\Controllers\Admin\KaabaLiveStreamController;
 use App\Http\Controllers\Admin\MobileFeedbackController;
 use App\Http\Controllers\Admin\MobileUserController;
 use App\Http\Controllers\Admin\PushNotificationController;
+use App\Http\Controllers\Admin\ReligiousSpecialDayController;
+use App\Http\Controllers\Admin\SpecialDaySharingCampaignController;
 use App\Http\Controllers\Admin\ZikirCategoryController;
 use App\Http\Controllers\Admin\ZikirController;
 use App\Http\Controllers\TestController;
@@ -78,6 +81,16 @@ Route::middleware('auth')->group(function (): void {
         ->except('show')
         ->parameters(['hadises' => 'hadis'])
         ->names('admin.hadises');
+    Route::get('/admin/kaaba-live-stream', [KaabaLiveStreamController::class, 'edit'])
+        ->name('admin.kaaba-live-stream.edit');
+    Route::put('/admin/kaaba-live-stream', [KaabaLiveStreamController::class, 'update'])
+        ->name('admin.kaaba-live-stream.update');
+    Route::resource('/admin/religious-special-days', ReligiousSpecialDayController::class)
+        ->except('show')
+        ->names('admin.religious-special-days');
+    Route::resource('/admin/special-day-sharing-campaigns', SpecialDaySharingCampaignController::class)
+        ->except('show')
+        ->names('admin.special-day-sharing-campaigns');
     Route::resource('/admin/push-notifications', PushNotificationController::class)
         ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
         ->names('admin.push-notifications');

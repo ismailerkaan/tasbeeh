@@ -278,6 +278,7 @@ class SyncUserStateController extends Controller
         return ZikirCategory::query()
             ->where('is_active', true)
             ->with(['zikirs' => fn ($query) => $query->orderBy('id')])
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get()
             ->map(function (ZikirCategory $category): array {
@@ -307,6 +308,7 @@ class SyncUserStateController extends Controller
         return DuaCategory::query()
             ->where('is_active', true)
             ->with(['duas' => fn ($query) => $query->where('is_active', true)->orderBy('id')])
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get()
             ->map(function (DuaCategory $category): array {
@@ -334,6 +336,7 @@ class SyncUserStateController extends Controller
         return HadisCategory::query()
             ->where('is_active', true)
             ->with(['hadises' => fn ($query) => $query->where('is_active', true)->orderBy('id')])
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get()
             ->map(function (HadisCategory $category): array {

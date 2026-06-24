@@ -15,7 +15,8 @@ class ZikirCategoryController extends Controller
     {
         return view('admin.zikir-categories.index', [
             'zikirCategories' => ZikirCategory::query()
-                ->latest('id')
+                ->orderBy('sort_order')
+                ->orderBy('id')
                 ->paginate(15),
         ]);
     }

@@ -10,6 +10,9 @@
 @php($mobileUsersActive = request()->routeIs('admin.mobile-users.*'))
 @php($mobileFeedbacksActive = request()->routeIs('admin.mobile-feedbacks.*'))
 @php($dailyZikrsActive = request()->routeIs('admin.daily-zikrs.*'))
+@php($kaabaLiveStreamActive = request()->routeIs('admin.kaaba-live-stream.*'))
+@php($religiousSpecialDaysActive = request()->routeIs('admin.religious-special-days.*'))
+@php($specialDaySharingActive = request()->routeIs('admin.special-day-sharing-campaigns.*'))
 
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
@@ -80,6 +83,24 @@
                 <a class="d-flex align-items-center" href="{{ route('admin.hadises.index') }}">
                     <i data-feather="book"></i>
                     <span class="menu-title text-truncate">Hadisler</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $kaabaLiveStreamActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.kaaba-live-stream.edit') }}">
+                    <i data-feather="video"></i>
+                    <span class="menu-title text-truncate">Kâbe Canlı Yayını</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $religiousSpecialDaysActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.religious-special-days.index') }}">
+                    <i data-feather="star"></i>
+                    <span class="menu-title text-truncate">Dini Özel Günler</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $specialDaySharingActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.special-day-sharing-campaigns.index') }}">
+                    <i data-feather="image"></i>
+                    <span class="menu-title text-truncate">Özel Gün Paylaşımları</span>
                 </a>
             </li>
             <li class="nav-item {{ $pushNotificationsActive ? 'active' : '' }}">

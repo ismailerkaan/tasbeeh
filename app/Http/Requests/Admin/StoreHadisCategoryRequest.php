@@ -19,6 +19,7 @@ class StoreHadisCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'sort_order' => ['nullable', 'integer', 'min:0', 'max:65535'],
             'is_active' => ['required', 'boolean'],
         ];
     }
@@ -26,6 +27,7 @@ class StoreHadisCategoryRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
+            'sort_order' => (int) $this->input('sort_order', 0),
             'is_active' => $this->boolean('is_active'),
         ]);
     }
