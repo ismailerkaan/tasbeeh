@@ -1,0 +1,226 @@
+[
+    {
+        "gunun_adi": "Miraç Kandili",
+        "kategori": "Kandil Geceleri",
+        "tarih": "15.01.2026",
+        "hicri_tarih": "26 Recep 1447",
+        "kisa_aciklama": "Hz. Muhammed'in (S.A.V) Miraç mucizesinin gerçekleştiği mübarek gecedir.",
+        "gunun_anlami_ve_onemi": "Peygamber Efendimiz'in Mescid-i Haram'dan Mescid-i Aksa'ya, oradan da semaya yükseltildiği ve beş vakit namazın farz kılındığı maneviyatı yüksek gecedir.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Bolca salavat getirmek",
+            "Namaz kılmak",
+            "Dua ve istiğfar etmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Berat Kandili",
+        "kategori": "Kandil Geceleri",
+        "tarih": "02.02.2026",
+        "hicri_tarih": "14 Şaban 1447",
+        "kisa_aciklama": "Af, mağfiret ve arınma gecesi olarak bilinen mübarek gecedir.",
+        "gunun_anlami_ve_onemi": "Allah'ın rahmet, mağfiret ve affının bol olduğu, tövbe ve istiğfarın önem kazandığı mübarek gecelerden biridir.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Bol bol istiğfar etmek",
+            "Kur'an-ı Kerim okumak",
+            "Dua etmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Ramazan Ayı Başlangıcı",
+        "kategori": "Mübarek Aylar & Günler",
+        "tarih": "19.02.2026",
+        "hicri_tarih": "1 Ramazan 1447",
+        "kisa_aciklama": "On bir ayın sultanı olan Ramazan ayının başlangıcıdır.",
+        "gunun_anlami_ve_onemi": "İslam'ın beş şartından biri olan oruç ibadetinin yerine getirildiği, Kur'an-ı Kerim'in indirilmeye başlandığı, yardımlaşma ve dayanışmanın arttığı mübarek aydır.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Oruca niyet etmek",
+            "Teravih namazına başlamak",
+            "Mukabele okumak"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Kadir Gecesi",
+        "kategori": "Kandil Geceleri",
+        "tarih": "16.03.2026",
+        "hicri_tarih": "26 Ramazan 1447",
+        "kisa_aciklama": "Bin aydan daha hayırlı olduğu bildirilen mübarek gecedir.",
+        "gunun_anlami_ve_onemi": "Kur'an-ı Kerim'in indirilmeye başlandığı, duaların ve ibadetlerin büyük fazilet taşıdığı en kıymetli gecelerden biridir.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Kadir Suresini okumak",
+            "Geceyi ibadet ve tefekkürle geçirmek",
+            "Dua ve istiğfar etmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Ramazan Bayramı (1. Gün)",
+        "kategori": "Dini Bayramlar",
+        "tarih": "20.03.2026",
+        "hicri_tarih": "1 Şevval 1447",
+        "kisa_aciklama": "Bir aylık oruç ibadetinin ardından kutlanan bayramın ilk günüdür.",
+        "gunun_anlami_ve_onemi": "Müslümanların Ramazan ayı boyunca tuttukları oruçların ardından Allah'a şükrettikleri, sevinç ve kardeşliğin paylaşıldığı mübarek bayram günüdür.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Bayram namazı kılmak",
+            "Aile ve akraba ziyaretleri yapmak",
+            "Bayramlaşmak"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Ramazan Bayramı (2. Gün)",
+        "kategori": "Dini Bayramlar",
+        "tarih": "21.03.2026",
+        "hicri_tarih": "2 Şevval 1447",
+        "kisa_aciklama": "Ramazan Bayramı'nın ikinci günüdür.",
+        "gunun_anlami_ve_onemi": "Bayram sevincinin aile, akraba ve toplumla paylaşıldığı, birlik ve beraberliğin güçlendiği mübarek gündür.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Akraba ziyaretleri yapmak",
+            "Büyüklerin duasını almak",
+            "Çocukları sevindirmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Ramazan Bayramı (3. Gün)",
+        "kategori": "Dini Bayramlar",
+        "tarih": "22.03.2026",
+        "hicri_tarih": "3 Şevval 1447",
+        "kisa_aciklama": "Ramazan Bayramı'nın üçüncü günüdür.",
+        "gunun_anlami_ve_onemi": "Bayramlaşmanın devam ettiği, kardeşlik, paylaşma ve muhabbet duygularının pekiştiği mübarek gündür.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Ziyaretlerde bulunmak",
+            "Dargınları barıştırmak",
+            "İhtiyaç sahiplerini gözetmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Kurban Bayramı (1. Gün)",
+        "kategori": "Dini Bayramlar",
+        "tarih": "27.05.2026",
+        "hicri_tarih": "10 Zilhicce 1447",
+        "kisa_aciklama": "Kurban ibadetinin yerine getirildiği bayramın ilk günüdür.",
+        "gunun_anlami_ve_onemi": "Hz. İbrahim'in teslimiyetini ve Allah'a bağlılığı hatırlatan, paylaşmanın ve dayanışmanın öne çıktığı mübarek bayram günüdür.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Bayram namazı kılmak",
+            "Kurban ibadetini yerine getirmek",
+            "Kurban etini ihtiyaç sahipleriyle paylaşmak"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Kurban Bayramı (2. Gün)",
+        "kategori": "Dini Bayramlar",
+        "tarih": "28.05.2026",
+        "hicri_tarih": "11 Zilhicce 1447",
+        "kisa_aciklama": "Kurban Bayramı'nın ikinci günüdür.",
+        "gunun_anlami_ve_onemi": "Kurban ibadetinin ve bayramlaşmanın devam ettiği, paylaşma ve yardımlaşma bilincinin güçlendiği mübarek gündür.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Kurban ibadetini tamamlamak",
+            "Akraba ve komşuları ziyaret etmek",
+            "İhtiyaç sahiplerini gözetmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Kurban Bayramı (3. Gün)",
+        "kategori": "Dini Bayramlar",
+        "tarih": "29.05.2026",
+        "hicri_tarih": "12 Zilhicce 1447",
+        "kisa_aciklama": "Kurban Bayramı'nın üçüncü günüdür.",
+        "gunun_anlami_ve_onemi": "Bayram sevincinin sürdüğü, kurban ibadetiyle paylaşma ve kardeşlik duygularının yaşatıldığı mübarek gündür.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Bayram ziyaretleri yapmak",
+            "Sadaka vermek",
+            "Dua etmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Kurban Bayramı (4. Gün)",
+        "kategori": "Dini Bayramlar",
+        "tarih": "30.05.2026",
+        "hicri_tarih": "13 Zilhicce 1447",
+        "kisa_aciklama": "Kurban Bayramı'nın dördüncü günüdür.",
+        "gunun_anlami_ve_onemi": "Kurban Bayramı'nın son günü olup bayramlaşma, paylaşma ve kardeşlik bağlarının pekiştirildiği mübarek gündür.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Bayramlaşmak",
+            "Aile büyüklerini ziyaret etmek",
+            "İhtiyaç sahiplerini sevindirmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Hicri Yılbaşı",
+        "kategori": "Mübarek Aylar & Günler",
+        "tarih": "16.06.2026",
+        "hicri_tarih": "1 Muharrem 1448",
+        "kisa_aciklama": "Hicri takvime göre yeni yılın başlangıcıdır.",
+        "gunun_anlami_ve_onemi": "Hz. Peygamber'in Mekke'den Medine'ye hicretini esas alan Hicri takvimin yeni yılıdır. Muharrem ayı, İslam kültüründe önemli ve faziletli aylardan biridir.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Yeni yıl için hayırlı dualar etmek",
+            "Geçmiş yılı muhasebe etmek",
+            "Salih amellere yönelmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Aşure Günü",
+        "kategori": "Mübarek Aylar & Günler",
+        "tarih": "25.06.2026",
+        "hicri_tarih": "10 Muharrem 1448",
+        "kisa_aciklama": "Muharrem ayının onuncu günü olan Aşure Günü'dür.",
+        "gunun_anlami_ve_onemi": "İslam kültüründe önemli yeri olan Aşure Günü, paylaşma, bereket ve ibadet bilincinin öne çıktığı mübarek günlerden biridir.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Oruç tutmak",
+            "Dua etmek",
+            "Aşure ikram etmek"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Mevlid Kandili",
+        "kategori": "Kandil Geceleri",
+        "tarih": "24.08.2026",
+        "hicri_tarih": "12 Rebiülevvel 1448",
+        "kisa_aciklama": "Peygamber Efendimiz Hz. Muhammed'in (S.A.V) dünyaya teşrif ettiği gecedir.",
+        "gunun_anlami_ve_onemi": "Alemlere rahmet olarak gönderilen Hz. Muhammed'in (S.A.V) doğumunun hatırlandığı, onun hayatını ve güzel ahlakını anlama vesilesi olan mübarek gecedir.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Peygamberimizin hayatını okumak",
+            "Çokça salavat getirmek",
+            "Mevlid programlarına katılmak"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Üç Ayların Başlangıcı",
+        "kategori": "Mübarek Aylar & Günler",
+        "tarih": "10.12.2026",
+        "hicri_tarih": "1 Recep 1448",
+        "kisa_aciklama": "Recep, Şaban ve Ramazan aylarını kapsayan mübarek dönemin başlangıcıdır.",
+        "gunun_anlami_ve_onemi": "İslam aleminde rahmet, bereket ve mağfiret mevsimi olarak bilinen üç ayların başladığı, manevi hazırlık ve ibadetlerin arttığı mübarek gündür.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Nafile oruç tutmak",
+            "Bol bol dua ve istiğfar etmek",
+            "Kur'an-ı Kerim okumak"
+        ],
+        "mobil_uygulamada_goster": true
+    },
+    {
+        "gunun_adi": "Regaip Kandili",
+        "kategori": "Kandil Geceleri",
+        "tarih": "10.12.2026",
+        "hicri_tarih": "1 Recep 1448",
+        "kisa_aciklama": "Üç ayların ilk kandil gecesidir.",
+        "gunun_anlami_ve_onemi": "Recep ayının manevi atmosferini başlatan, dua, tövbe ve ibadetlerle değerlendirilen mübarek kandil gecelerinden biridir.",
+        "o_gun_yapilmasi_onerilenler": [
+            "Kaza ve nafile namazları kılmak",
+            "Tövbe ve istiğfar etmek",
+            "Akraba büyüklerini arayıp hal hatır sormak"
+        ],
+        "mobil_uygulamada_goster": true
+    }
+]

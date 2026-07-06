@@ -1,0 +1,702 @@
+[
+    {
+        "kategori": "İman",
+        "kaynagi": "(Buhârî, Bed'ü'l-Vahy, 1)",
+        "hadis": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
+        "turkce_meali": "Ameller ancak niyetlere göredir. Herkesin niyeti ne ise eline geçecek olan da odur.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Müslim, Îmân, 95)",
+        "hadis": "الدِّينُ النَّصِيحَةُ",
+        "turkce_meali": "Din nasihattir (samimiyettir).",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Müslim, Îmân, 58)",
+        "hadis": "الْإِيمَانُ بِضْعٌ وَسَبْعُونَ شُعْبَةً",
+        "turkce_meali": "İman yetmiş küsur şubedir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Buhârî, Îmân, 4)",
+        "hadis": "الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ",
+        "turkce_meali": "Müslüman, diğer Müslümanların elinden ve dilinden güvende olduğu kimsedir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Buhârî, Îmân, 7)",
+        "hadis": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+        "turkce_meali": "Sizden biriniz kendisi için istediğini Müslüman kardeşi için de istemedikçe (kamil manada) iman etmiş olamaz.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Buhârî, Edeb, 31)",
+        "hadis": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ",
+        "turkce_meali": "Kim Allah'a ve ahiret gününe iman ediyorsa, ya hayır söylesin ya da sussun.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Müslim, Îmân, 93)",
+        "hadis": "لَا تَدْخُلُونَ الْجَنَّةَ حَتَّى تُؤْمِنُوا، وَلَا تُؤْمِنُوا حَتَّى تَحَابُّوا",
+        "turkce_meali": "İman etmedikçe cennete giremezsiniz, birbirinizi sevmedikçe de (kamil manada) iman etmiş olmazsınız.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Müslim, Birr, 34)",
+        "hadis": "إِنَّ اللَّهَ لَا يَنْظُرُ إِلَى صُوَرِكُمْ وَأَمْوَالِكُمْ، وَلَكِنْ يَنْظُرُ إِلَى قُلُوبِكُمْ وَأَعْمَالِكُمْ",
+        "turkce_meali": "Allah sizin dış görünüşlerinize ve mallarınıza bakmaz, fakat O sizin kalplerinize ve amellerinize bakar.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Taberânî, el-Mu‘cemü’l-Kebîr, 7/338)",
+        "hadis": "مَنْ قَالَ لَا إِلَهَ إِلَّا اللَّهُ مُخْلِصًا دَخَلَ الْجَنَّةَ",
+        "turkce_meali": "Kim ihlasla 'La ilahe illallah' derse cennete girer.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Buhârî, Îmân, 16)",
+        "hadis": "الْحَيَاءُ شُعْبَةٌ مِنَ الْإِيمَانِ",
+        "turkce_meali": "Haya imandan bir şubedir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Îmân, 1)",
+        "hadis": "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ",
+        "turkce_meali": "İslam beş temel üzerine kurulmuştur...",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Tirmizî, Îmân, 8)",
+        "hadis": "رَأْسُ الْأَمْرِ الْإِسْلَامُ، وَعَمُودُهُ الصَّلَاةُ",
+        "turkce_meali": "İşin başı İslam, direği ise namazdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Savm, 2)",
+        "hadis": "الصِّيَامُ جُنَّةٌ",
+        "turkce_meali": "Oruç bir kalkandır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Tirmizî, Tahâret, 1)",
+        "hadis": "مِفْتَاحُ الْجَنَّةِ الصَّلَاةُ",
+        "turkce_meali": "Cennetin anahtarı namazdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Müslim, Salât, 215)",
+        "hadis": "أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ فَأَكْثِرُوا الدُّعَاءَ",
+        "turkce_meali": "Kulun Rabbine en yakın olduğu an secde anıdır; öyleyse orada çokça dua edin.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Müslim, Müsâfirîn, 96)",
+        "hadis": "رَكْعَتَا الْفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا",
+        "turkce_meali": "Sabah namazının iki rekatı, dünyadan ve içindekilerden daha hayırlıdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Ezân, 30)",
+        "hadis": "صَلَاةُ الْجَمَاعَةِ تَفْضُلُ صَلَاةَ الْفَذِّ بِسَبْعٍ وَعِشْرِينَ دَرَجَةً",
+        "turkce_meali": "Cemaatle kılınan namaz, tek başına kılınan namazdan yirmi yedi derece daha faziletlidir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Tirmizî, Cum'a, 79)",
+        "hadis": "الصَّدَقَةُ تُطْفِئُ الْخَطِيئَةَ كَمَا يُطْفِئُ الْمَاءُ النَّارَ",
+        "turkce_meali": "Suyun ateşi söndürdüğü gibi sadaka da günahların (kötü etkisini) söndürür.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Îmân, 28)",
+        "hadis": "مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ",
+        "turkce_meali": "Kim inanarak ve sevabını Allah'tan umarak Ramazan orucunu tutarsa, geçmiş günahları bağışlanır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Umre, 1)",
+        "hadis": "الْحَجُّ الْمَبْرُورُ لَيْسَ لَهُ جَزَاءٌ إِلَّا الْجَنَّةُ",
+        "turkce_meali": "Mebrur (kabul edilmiş) haccın karşılığı ancak cennettir.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Muvatta, Hüsnü'l-Hulk, 8)",
+        "hadis": "إِنَّمَا بُعِثْتُ لِأُتَمِّمَ مَكَارِمَ الْأَخْلَاقِ",
+        "turkce_meali": "Ben ancak güzel ahlakı tamamlamak için gönderildim.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Buhârî, Menâkıb, 23)",
+        "hadis": "خِيَارُكُمْ أَحَاسِنُكُمْ أَخْلَاقًا",
+        "turkce_meali": "Sizin en hayırlınız, ahlakı en güzel olanınızdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Buhârî, İlim, 11)",
+        "hadis": "يَسِّرُوا وَلَا تُعَسِّرُوا",
+        "turkce_meali": "Kolaylaştırın, zorlaştırmayın.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Müslim, Cihâd, 6)",
+        "hadis": "بَشِّرُوا وَلَا تُنَفِّرُوا",
+        "turkce_meali": "Müjdeleyin, nefret ettirmeyin.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Buhârî, Edeb, 18)",
+        "hadis": "مَنْ لَا يَرْحَمُ لَا يُرْحَمُ",
+        "turkce_meali": "İnsanlara merhamet etmeyene Allah da merhamet etmez.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Tirmizî, Birr, 36)",
+        "hadis": "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ لَكَ صَدَقَةٌ",
+        "turkce_meali": "Din kardeşinin yüzüne gülümsemen senin için bir sadakadır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Müslim, Îmân, 168)",
+        "hadis": "لَا يَدْخُلُ الْجَنَّةَ نَمَّامٌ",
+        "turkce_meali": "Söz taşıyan (arabozan) cennete giremez.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Müslim, Îmân, 164)",
+        "hadis": "مَنْ غَشَّنَا فَلَيْسَ مِنَّا",
+        "turkce_meali": "Bizi aldatan bizden değildir.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Buhârî, Cihâd, 128)",
+        "hadis": "الْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ",
+        "turkce_meali": "Güzel söz sadakadır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Müslim, Birr, 105)",
+        "hadis": "إِنَّ الصِّدْقَ يَهْدِي إِلَى الْبِرِّ",
+        "turkce_meali": "Şüphesiz ki doğruluk iyiliğe götürür.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(İbn Mâce, Mukaddime, 17)",
+        "hadis": "طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ",
+        "turkce_meali": "İlim öğrenmek her Müslümana farzdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Müslim, Zikr, 39)",
+        "hadis": "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ",
+        "turkce_meali": "Kim ilim öğrenmek için yola çıkarsa, Allah ona cennete giden yolu kolaylaştırır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Ebû Dâvûd, İlim, 1)",
+        "hadis": "الْعُلَمَاءُ وَرَثَةُ الْأَنْبِيَاءِ",
+        "turkce_meali": "Alimler peygamberlerin varisleridir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Buhârî, İlim, 10)",
+        "hadis": "مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ",
+        "turkce_meali": "Allah kimin için hayır dilerse, onu dinde fakih (anlayış sahibi) kılar.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Müslim, Vasiyyet, 14)",
+        "hadis": "إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثَةٍ...",
+        "turkce_meali": "İnsan öldüğü zaman ameli kesilir; ancak üç şey hariç: Sadaka-i cariye, faydalanılan ilim ve kendisine dua eden hayırlı evlat.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Müslim, Müsâfirîn, 252)",
+        "hadis": "اقْرَءُوا الْقُرْآنَ فَإِنَّهُ يَأْتِي يَوْمَ الْقِيَامَةِ شَفِيعًا لِأَصْحَابِهِ",
+        "turkce_meali": "Kur'an'ı okuyunuz. Çünkü o, kıyamet günü kendisini okuyanlara şefaatçi olarak gelecektir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Buhârî, Fezâilü'l-Kur'ân, 21)",
+        "hadis": "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ",
+        "turkce_meali": "Sizin en hayırlınız Kur'an'ı öğrenen ve öğreteninizdir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Tirmizî, İlim, 19)",
+        "hadis": "الْحِكْمَةُ ضَالَّةُ الْمُؤْمِنِ فَحَيْثُ وَجَدَهَا فَهُوَ أَحَقُّ بِهَا",
+        "turkce_meali": "Hikmetli söz müminin yitiğidir; nerede bulursa onu almaya en layık olan odur.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(İbn Mâce, İkâme, 32)",
+        "hadis": "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا",
+        "turkce_meali": "Allah'ım! Senden faydalı ilim, temiz rızık ve kabul edilmiş amel isterim.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Tirmizî, İlim, 3)",
+        "hadis": "مَنْ سُئِلَ عَنْ عِلْمٍ عَلِمَهُ ثُمَّ كَتَمَهُ أُلْجِمَ يَوْمَ الْقِيَامَةِ بِلِجَامٍ مِنْ نَارٍ",
+        "turkce_meali": "Kim bildiği bir ilimden sorulur da onu gizlerse, kıyamet günü ağzına ateşten bir gem vurulur.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, Zekât, 18)",
+        "hadis": "الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى",
+        "turkce_meali": "Veren el, alan elden daha üstündür.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Müslim, Birr, 18)",
+        "hadis": "لَا يَدْخُلُ الْجَنَّةَ قَاطِعُ رَحِمٍ",
+        "turkce_meali": "Akrabalık bağlarını koparan kimse cennete giremez.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Hâkim, el-Müstedrek, 4/167)",
+        "hadis": "لَيْسَ الْمُؤْمِنُ الَّذِي يَشْبَعُ وَجَارُهُ جَائِعٌ إِلَى جَنْبِهِ",
+        "turkce_meali": "Yanı başındaki komşusu açken tok yatan kimse (kamil manada) mümin değildir.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(İbn Mâce, Rühûn, 4)",
+        "hadis": "أَعْطُوا الْأَجِيرَ أَجْرَهُ قَبْلَ أَنْ يَجِفَّ عَرَقُهُ",
+        "turkce_meali": "İşçiye ücretini teri kurumadan veriniz.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Müslim, Selâm, 5)",
+        "hadis": "حَقُّ الْمُسْلِمِ عَلَى الْمُسْلِمِ سِتٌّ",
+        "turkce_meali": "Müslümanın Müslüman üzerindeki hakkı altıdır. (Selam vermek, davete icabet etmek, nasihatleşmek...)",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, el-Edebü'l-Müfred, 594)",
+        "hadis": "تَهَادَوْا تَحَابُّوا",
+        "turkce_meali": "Hediyeleşin ki birbirinize sevginiz artsın.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, Havâlât, 1)",
+        "hadis": "مَطْلُ الْغَنِيِّ ظُلْمٌ",
+        "turkce_meali": "Zenginin (ödeme imkanı olanın) borcunu ertelemesi zulümdür.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, Büyû', 19)",
+        "hadis": "الْبَيِّعَانِ بِالْخِيَارِ مَا لَمْ يَتَفَرَّقَا",
+        "turkce_meali": "Alıcı ve satıcı birbirlerinden ayrılmadıkları sürece pazarlığı bozmakta serbesttirler.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Müslim, Birr, 32)",
+        "hadis": "الْمُسْلِمُ أَخُو الْمُسْلِمِ لَا يَظْلِمُهُ وَلَا يَخْذُلُهُ وَلَا يَحْقِرُهُ",
+        "turkce_meali": "Müslüman Müslümanın kardeşidir. Ona zulmetmez, onu yalnız bırakmaz ve onu hor görmez.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Müslim, Zikr, 38)",
+        "hadis": "مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ",
+        "turkce_meali": "Kim bir müminin dünya sıkıntılarından birini giderirse, Allah da onun kıyamet günündeki sıkıntılarından birini giderir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Müslim, Îmân, 1)",
+        "hadis": "الْإِيمَانُ أَنْ تُؤْمِنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ، وَتُؤْمِنَ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ",
+        "turkce_meali": "İman; Allah'a, meleklerine, kitaplarına, peygamberlerine, ahiret gününe ve kadere, hayrın ve şerrin Allah'tan olduğuna inanmandır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Müslim, Îmân, 43)",
+        "hadis": "مَنْ مَاتَ وَهُوَ يَعْلَمُ أَنَّهُ لَا إِلَهَ إِلَّا اللَّهُ دَخَلَ الْجَنَّةَ",
+        "turkce_meali": "Kim Allah'tan başka ilah olmadığını bilerek (iman ederek) ölürse cennete girer.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Buhârî, Rikak, 38)",
+        "hadis": "مَنْ عَادَى لِي وَلِيًّا فَقَدْ آذَنْتُهُ بِالْحَرْبِ",
+        "turkce_meali": "Allah Teâlâ şöyle buyurmuştur: Kim benim bir veli kuluma düşmanlık ederse, ben ona harp ilan ederim.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Buhârî, Îmân, 9)",
+        "hadis": "ثَلَاثٌ مَنْ كُنَّ فِيهِ وَجَدَ حَلَاوَةَ الْإِيمَانِ...",
+        "turkce_meali": "Üç özellik vardır ki, bunlar kimde bulunursa o kimse imanın tadını alır: Allah ve Resulü'nü herkesten çok sevmek, sevdiğini sadece Allah için sevmek, küfre dönmekten ateşe atılmaktan korktuğu gibi korkmak.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Tirmizî, Radâ', 11)",
+        "hadis": "أَكْمَلُ الْمُؤْمِنِينَ إِيمَانًا أَحْسَنُهُمْ خُلُقًا",
+        "turkce_meali": "Müminlerin iman bakımından en olgun olanları, ahlakı en güzel olanlarıdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Müslim, Îmân, 78)",
+        "hadis": "مَنْ رَأَى مِنْكُمْ مُنْكَرًا فَلْيُغَيِّرْهُ بِيَدِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِلِسَانِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِقَلْبِهِ وَذَلِكَ أَضْعَفُ الْإِيمَانِ",
+        "turkce_meali": "Sizden kim bir kötülük görürse onu eliyle düzeltsin, buna gücü yetmezse diliyle düzeltsin, buna da gücü yetmezse kalbiyle buğz etsin. Bu ise imanın en zayıf derecesidir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Buhârî, Eymân, 3)",
+        "hadis": "وَاللَّهِ لَا يُؤْمِنُ، وَاللَّهِ لَا يُؤْمِنُ، وَاللَّهِ لَا يُؤْمِنُ... الَّذِي لَا يَأْمَنُ جَارُهُ بَوَائِقَهُ",
+        "turkce_meali": "Vallahi iman etmiş olmaz, vallahi iman etmiş olmaz, vallahi iman etmiş olmaz! Komşusu, şerrinden emin olmayan kimse.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Tirmizî, Birr, 80)",
+        "hadis": "الْحَيَاءُ مِنَ الْإِيمَانِ، وَالْإِيمَانُ فِي الْجَنَّةِ، وَالْبَذَاءُ مِنَ الْجَفَاءِ، وَالْجَفَاءُ فِي النَّارِ",
+        "turkce_meali": "Haya imandandır, iman sahibi cennettedir. Çirkin söz söylemek ve kabalık ise cefadandır, cefa sahibi ise cehennemdedir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(İbn Mâce, Mukaddime, 9)",
+        "hadis": "الْإِيمَانُ مَعْرِفَةٌ بِالْقَلْبِ، وَقَوْلٌ بِاللِّسَانِ، وَعَمَلٌ بِالْأَرْكَانِ",
+        "turkce_meali": "İman; kalple tasdik etmek, dille ikrar etmek ve azalarla amel etmektir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İman",
+        "kaynagi": "(Müslim, Zühd, 64)",
+        "hadis": "عَجَبًا لِأَمْرِ الْمُؤْمِنِ، إِنَّ أَمْرَهُ كُلَّهُ خَيْرٌ...",
+        "turkce_meali": "Müminin durumu ne ilginçtir! Her hali kendisi için bir hayırdır. Bu durum yalnız mümine mahsustur. Başına sevinecek bir hal geldiğinde şükreder, bu onun için hayır olur. Başına bir sıkıntı geldiğinde sabreder, bu da onun için hayır olur.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Teheccüd, 1)",
+        "hadis": "أَفَلَا أَكُونُ عَبْدًا شَكُورًا",
+        "turkce_meali": "(Geceleri ayakları şişene kadar namaz kılan Peygamberimize neden böyle yaptığı sorulduğunda:) 'Şükreden bir kul olmayayım mı?'",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Tirmizî, Deavât, 1)",
+        "hadis": "الدُّعَاءُ مُخُّ الْعِبَادَةِ",
+        "turkce_meali": "Dua, ibadetin özüdür.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Müslim, Mesâcid, 252)",
+        "hadis": "صَلَاةُ اللَّيْلِ مَثْنَى مَثْنَى",
+        "turkce_meali": "Gece namazı ikişer ikişerdir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Savm, 9)",
+        "hadis": "مَنْ لَمْ يَدَعْ قَوْلَ الزُّورِ وَالْعَمَلَ بِهِ فَلَيْسَ لِلَّهِ حَاجَةٌ فِي أَنْ يَدَعَ طَعَامَهُ وَشَرَابَهُ",
+        "turkce_meali": "Kim yalan sözü ve yalanla iş yapmayı terk etmezse, Allah'ın onun yemesini içmesini terk etmesine (oruç tutmasına) ihtiyacı yoktur.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Müslim, Zekât, 53)",
+        "hadis": "كُلُّ سُلَامَى مِنَ النَّاسِ عَلَيْهِ صَدَقَةٌ...",
+        "turkce_meali": "İnsanların her bir eklemi için her gün bir sadaka gerekir. İki kişi arasında adaletle hükmetmen bir sadakadır...",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Tirmizî, Cum'a, 4)",
+        "hadis": "مَنْ تَوَضَّأَ يَوْمَ الْجُمُعَةِ فَبِهَا وَنِعْمَتْ، وَمَنْ اغْتَسَلَ فَالْغُسْلُ أَفْضَلُ",
+        "turkce_meali": "Kim Cuma günü abdest alırsa ne iyi etmiştir. Kim de guslederse gusletmek daha faziletlidir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Müslim, Sıyâm, 196)",
+        "hadis": "مَنْ صَامَ رَمَضَانَ ثُمَّ أَتْبَعَهُ سِتًّا مِنْ شَوَّالٍ كَانَ كَصِيَامِ الدَّهْرِ",
+        "turkce_meali": "Kim Ramazan orucunu tutar, sonra buna Şevval ayından altı gün eklerse, bütün yılı oruçlu geçirmiş gibi olur.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Taberânî, el-Mu‘cemü’l-Kebîr, 8/261)",
+        "hadis": "صَنَائِعُ الْمَعْرُوفِ تَقِي مَصَارِعَ السُّوءِ",
+        "turkce_meali": "İyilik yapmak, kötü akıbetlerden (fena ölümlerden) korur.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Mevâkît, 5)",
+        "hadis": "أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ الصَّلَاةُ عَلَى وَقْتِهَا",
+        "turkce_meali": "Allah'a en sevimli amel, vaktinde kılınan namazdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İbadet",
+        "kaynagi": "(Buhârî, Ezân, 36)",
+        "hadis": "لَوْ يَعْلَمُ النَّاسُ مَا فِي النِّدَاءِ وَالصَّفِّ الْأَوَّلِ، ثُمَّ لَمْ يَجِدُوا إِلَّا أَنْ يَسْتَهِمُوا عَلَيْهِ لَاسْتَهَمُوا",
+        "turkce_meali": "İnsanlar ezan okumanın ve ilk safta namaz kılmanın sevabını bilselerdi, sonra da bunları yapmak için kura çekmekten başka çare bulamasalardı kura çekerlerdi.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Müslim, Birr, 47)",
+        "hadis": "لَا تَحْقِرَنَّ مِنَ الْمَعْرُوفِ شَيْئًا وَلَوْ أَنْ تَلْقَى أَخَاكَ بِوَجْهٍ طَلْقٍ",
+        "turkce_meali": "Din kardeşini güler yüzle karşılamak bile olsa, hiçbir iyiliği küçümseme.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Tirmizî, Birr, 71)",
+        "hadis": "إِنَّ مِنْ أَحَبِّكُمْ إِلَيَّ وَأَقْرَبِكُمْ مِنِّي مَجْلِسًا يَوْمَ الْقِيَامَةِ أَحَاسِنَكُمْ أَخْلَاقًا",
+        "turkce_meali": "Kıyamet gününde bana en sevimli ve en yakın olanınız, ahlakı en güzel olanınızdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Ebû Dâvûd, Edeb, 1)",
+        "hadis": "مَنْ كَظَمَ غَيْظًا وَهُوَ قَادِرٌ عَلَى أَنْ يُنْفِذَهُ دَعَاهُ اللَّهُ عَزَّ وَجَلَّ عَلَى رُؤُوسِ الْخَلَائِقِ يَوْمَ الْقِيَامَةِ...",
+        "turkce_meali": "Kim gücü yettiği halde öfkesini yutarsa, Allah onu kıyamet gününde bütün mahlukatın huzurunda çağırır ve dilediği huriyi seçmekte serbest bırakır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Müslim, Zühd, 42)",
+        "hadis": "انْظُرُوا إِلَى مَنْ أَسْفَلَ مِنْكُمْ وَلَا تَنْظُرُوا إِلَى مَنْ هُوَ فَوْقَكُمْ، فَهُوَ أَجْدَرُ أَنْ لَا تَزْدَرُوا نِعْمَةَ اللَّهِ عَلَيْكُمْ",
+        "turkce_meali": "Hayat şartları sizden aşağıda olanlara bakın, üstünüzdekilere bakmayın. Bu, Allah'ın size verdiği nimetleri küçümsememeniz için en uygun olanıdır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Buhârî, Edeb, 38)",
+        "hadis": "لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ",
+        "turkce_meali": "Gerçek yiğit, güreşte başkalarını yenen değil, öfkelendiğinde nefsine hakim olandır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Tirmizî, Birr, 16)",
+        "hadis": "رِضَا الرَّبِّ فِي رِضَا الْوَالِدِ، وَسَخَطُ الرَّبِّ فِي سَخَطِ الْوَالِدِ",
+        "turkce_meali": "Rabbin rızası anne-babanın rızasındadır, Rabbin öfkesi anne-babanın öfkesindedir.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Müslim, Birr, 77)",
+        "hadis": "اتَّقُوا الظُّلْمَ فَإِنَّ الظُّلْمَ ظُلُمَاتٌ يَوْمَ الْقِيَامَةِ",
+        "turkce_meali": "Zulümden sakınınız! Çünkü zulüm, kıyamet gününde zifiri karanlıklar olacaktır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Tirmizî, Zühd, 11)",
+        "hadis": "مِنْ حُسْنِ إِسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ",
+        "turkce_meali": "Kişinin kendisini (dünya ve ahirette) ilgilendirmeyen lüzumsuz şeyleri terk etmesi, Müslümanlığının güzelliğindendir.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Buhârî, Edeb, 60)",
+        "hadis": "كُلُّ أُمَّتِي مُعَافًى إِلَّا الْمُجَاهِرِينَ",
+        "turkce_meali": "Ümmetimin hepsi affedilir; ancak günahını açıktan işleyenler (veya işlediği günahı ifşa edenler) hariç.",
+        "aktif": true
+    },
+    {
+        "kategori": "Ahlak",
+        "kaynagi": "(Tirmizî, İlim, 14)",
+        "hadis": "الدَّالُّ عَلَى الْخَيْرِ كَفَاعِلِهِ",
+        "turkce_meali": "Hayra vesile olan, o hayrı yapan gibidir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Tirmizî, Deavât, 68)",
+        "hadis": "اللَّهُمَّ انْفَعْنِي بِمَا عَلَّمْتَنِي، وَعَلِّمْنِي مَا يَنْفَعُنِي، وَزِدْنِي عِلْمًا",
+        "turkce_meali": "Allahım! Bana öğrettiklerinle beni faydalandır, bana fayda verecek şeyleri öğret ve ilmimi artır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Ebû Dâvûd, İlim, 1)",
+        "hadis": "فَضْلُ الْعَالِمِ عَلَى الْعَابِدِ كَفَضْلِ الْقَمَرِ لَيْلَةَ الْبَدْرِ عَلَى سَائِرِ الْكَوَاكِبِ",
+        "turkce_meali": "Alimin abide üstünlüğü, dolunaylı gecede ayın diğer yıldızlara üstünlüğü gibidir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Hâkim, el-Müstedrek, 1/188)",
+        "hadis": "قَيِّدُوا الْعِلْمَ بِالْكِتَابِ",
+        "turkce_meali": "İlmi yazarak (kaydederek) bağlayın.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Ebû Dâvûd, İlim, 8)",
+        "hadis": "مَنْ أَفْتَى بِغَيْرِ عِلْمٍ كَانَ إِثْمُهُ عَلَى مَنْ أَفْتَاهُ",
+        "turkce_meali": "Kim bilgisizce (ilimsiz) fetva verirse, bunun günahı o fetvayı verenin boynunadır.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Buhârî, Enbiyâ, 50)",
+        "hadis": "بَلِّغُوا عَنِّي وَلَوْ آيَةً",
+        "turkce_meali": "Benden (duyduğunuz) bir ayet bile olsa (insanlara) ulaştırın.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Beyhakî, es-Sünenü'l-Kübrâ, 10/209)",
+        "hadis": "يَحْمِلُ هَذَا الْعِلْمَ مِنْ كُلِّ خَلَفٍ عُدُولُهُ، يَنْفُونَ عَنْهُ تَحْرِيفَ الْغَالِينَ، وَانْتِحَالَ الْمُبْطِلِينَ",
+        "turkce_meali": "Bu ilmi her nesilden güvenilir olanlar taşıyacaktır. Onlar, aşırı gidenlerin tahrifini ve batıl yolda olanların uydurmalarını ondan uzaklaştırırlar.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Müslim, Zikr, 38)",
+        "hadis": "وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ، يَتْلُونَ كِتَابَ اللَّهِ، وَيَتَدَارَسُونَهُ بَيْنَهُمْ، إِلَّا نَزَلَتْ عَلَيْهِمُ السَّكِينَةُ...",
+        "turkce_meali": "Bir topluluk Allah'ın evlerinden birinde toplanır, Allah'ın kitabını okur ve aralarında müzakere ederlerse, mutlaka üzerlerine sekinet (huzur) iner ve rahmet onları kaplar.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Ebû Dâvûd, Ferâiz, 1)",
+        "hadis": "الْعِلْمُ ثَلَاثَةٌ: آيَةٌ مُحْكَمَةٌ، أَوْ سُنَّةٌ قَائِمَةٌ، أَوْ فَرِيضَةٌ عَادِلَةٌ",
+        "turkce_meali": "İlim üçtür (bunun dışındakiler fazlalıktır): Muhkem ayet, ayakta tutulan sünnet, adil olan (miras paylaştıran) farz.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Taberânî, el-Mu‘cemü’l-Kebîr, 19/395)",
+        "hadis": "إِنَّمَا الْعِلْمُ بِالتَّعَلُّمِ، وَالْحِلْمُ بِالتَّحَلُّمِ",
+        "turkce_meali": "İlim ancak öğrenmekle (çalışarak), hilm (yumuşak huyluluk) ancak sabır göstermeye gayret etmekle elde edilir.",
+        "aktif": true
+    },
+    {
+        "kategori": "İlim",
+        "kaynagi": "(Tirmizî, İlim, 2)",
+        "hadis": "مَنْ خَرَجَ فِي طَلَبِ الْعِلْمِ فَهُوَ فِي سَبِيلِ اللَّهِ حَتَّى يَرْجِعَ",
+        "turkce_meali": "İlim tahsil etmek için yola çıkan kimse, evine dönünceye kadar Allah yolundadır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, Nikâh, 3)",
+        "hadis": "يَا مَعْشَرَ الشَّبَابِ، مَنِ اسْتَطَاعَ مِنْكُمُ الْبَاءَةَ فَلْيَتَزَوَّجْ، فَإِنَّهُ أَغَضُّ لِلْبَصَرِ، وَأَحْصَنُ لِلْفَرْجِ",
+        "turkce_meali": "Ey gençler! Sizden evlenmeye gücü yetenler evlensin. Çünkü evlilik, gözü haramdan daha çok korur ve iffeti muhafaza eder.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Müslim, Radâ', 64)",
+        "hadis": "الدُّنْيَا مَتَاعٌ، وَخَيْرُ مَتَاعِ الدُّنْيَا الْمَرْأَةُ الصَّالِحَةُ",
+        "turkce_meali": "Dünya bir geçimliktir. Dünyanın en hayırlı nimeti ise saliha (iyi) bir kadındır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, Şüf'a, 1)",
+        "hadis": "الْجَارُ أَحَقُّ بِشُفْعَةِ جَارِهِ",
+        "turkce_meali": "Komşu, komşusunun mülkünü öncelikle satın alma (şüf'a) hakkına daha layıktır.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, Büyû', 16)",
+        "hadis": "رَحِمَ اللَّهُ رَجُلًا سَمْحًا إِذَا بَاعَ، وَإِذَا اشْتَرَى، وَإِذَا اقْتَضَى",
+        "turkce_meali": "Satarken, alırken ve borcunu isterken kolaylık gösteren (hoşgörülü olan) kimseye Allah merhamet etsin.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Ebû Dâvûd, Akdıyye, 12)",
+        "hadis": "الْمُسْلِمُونَ عَلَى شُرُوطِهِمْ",
+        "turkce_meali": "Müslümanlar (kendi aralarında meşru çerçevede anlaştıkları) şartlara uyarlar.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(İbn Mâce, Ahkâm, 17)",
+        "hadis": "لَا ضَرَرَ وَلَا ضِرَارَ",
+        "turkce_meali": "İslam'da zarar vermek de, zarara zararla karşılık vermek de yoktur.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, Cum'a, 11)",
+        "hadis": "كُلُّكُمْ رَاعٍ، وَكُلُّكُمْ مَسْؤولٌ عَنْ رَعِيَّتِهِ",
+        "turkce_meali": "Hepiniz çobansınız (gözeticisiniz) ve hepiniz elinizin altındakilerden sorumlusunuz.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Buhârî, İstikraz, 4)",
+        "hadis": "إِنَّ خِيَارَكُمْ أَحْسَنُكُمْ قَضَاءً",
+        "turkce_meali": "Sizin en hayırlınız, borcunu en güzel şekilde (zamanında ve eksiksiz) ödeyeninizdir.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Müslim, Îmân, 147)",
+        "hadis": "إِنَّ اللَّهَ جَمِيلٌ يُحِبُّ الْجَمَالَ",
+        "turkce_meali": "Şüphesiz Allah güzeldir, güzelliği sever.",
+        "aktif": true
+    },
+    {
+        "kategori": "Sosyal Hayat",
+        "kaynagi": "(Ebû Dâvûd, Edeb, 143)",
+        "hadis": "مَا مِنْ مُسْلِمَيْنِ يَلْتَقِيَانِ فَيَتَصَافَحَانِ إِلَّا غُفِرَ لَهُمَا قَبْلَ أَنْ يَفْتَرِقَا",
+        "turkce_meali": "İki Müslüman karşılaştıklarında musafaha yaparlarsa (tokalaşırlarsa), birbirlerinden ayrılmadan önce mutlaka günahları bağışlanır.",
+        "aktif": true
+    }
+]

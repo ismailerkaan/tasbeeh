@@ -16,6 +16,7 @@ Thumbs.db
 # Firebase (SECRET - KRİTİK)
 
 tasbeehapp-*.json
+storage/app/firebase/*.json
 
 # IDE / Editor
 

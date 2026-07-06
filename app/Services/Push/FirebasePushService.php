@@ -183,7 +183,6 @@ class FirebasePushService
 
         $signature = '';
         $signed = openssl_sign($unsignedToken, $signature, $privateKeyResource, OPENSSL_ALGO_SHA256);
-        openssl_free_key($privateKeyResource);
 
         if (! $signed) {
             throw new RuntimeException('Unable to sign Firebase JWT assertion.');
