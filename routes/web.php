@@ -94,6 +94,8 @@ Route::middleware('auth')->group(function (): void {
     Route::resource('/admin/push-notifications', PushNotificationController::class)
         ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
         ->names('admin.push-notifications');
+    Route::post('/admin/mobile-users/{mobile_user}/push-notifications', [MobileUserController::class, 'sendPushNotification'])
+        ->name('admin.mobile-users.push-notifications.store');
     Route::resource('/admin/mobile-users', MobileUserController::class)
         ->names('admin.mobile-users');
     Route::resource('/admin/mobile-feedbacks', MobileFeedbackController::class)

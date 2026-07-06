@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreMobileUserRequest;
+use App\Http\Requests\Admin\StoreMobileUserPushNotificationRequest;
 use App\Http\Requests\Admin\UpdateMobileUserRequest;
+use App\Jobs\SendPushNotificationJob;
 use App\Models\Dua;
 use App\Models\MobileUser;
+use App\Models\PushNotification;
 use App\Models\Zikir;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Throwable;
 
 class MobileUserController extends Controller
 {
@@ -185,6 +189,47 @@ class MobileUserController extends Controller
 
         return to_route('admin.mobile-users.index')
             ->with('status', 'Kullanıcı güncellendi.');
+    }
+
+    public function sendPushNotification(StoreMobileUserPushNotificationRequest $request, MobileUser $mobileUser): RedirectResponse
+    {
+        $targetUserIdentifier = trim((string) $mobileUser->external_user_id);
+
+        if ($targetUserIdentifier === '') {
+            return back()
+                ->withInput()
+                ->with('error', 'Bu kullanıcının kullanıcı kimliği olmadığı için bildirim gönderilemedi.');
+        }
+
+        $pushNotification = PushNotification::query()->create([
+            'title' => $request->validated('title'),
+            'body' => $request->validated('body'),
+            'target_type' => PushNotification::TARGET_USER,
+            'target_user_identifier' => $targetUserIdentifier,
+            'data' => $request->payloadData(),
+            'status' => PushNotification::STATUS_QUEUED,
+        ]);
+
+        try {
+            SendPushNotificationJob::dispatchSync($pushNotification->id);
+        } catch (Throwable $throwable) {
+            report($throwable);
+
+            return back()
+                ->withInput()
+                ->with('error', 'Gönderim hatası: '.$throwable->getMessage());
+        }
+
+        $pushNotification->refresh();
+
+        if ($pushNotification->status === PushNotification::STATUS_FAILED) {
+            return back()
+                ->withInput()
+                ->with('error', 'Bildirim gönderilemedi: '.($pushNotification->error_message ?: 'Bilinmeyen hata'));
+        }
+
+        return back()
+            ->with('status', "Bildirim gönderildi. Başarılı: {$pushNotification->success_count}, Hatalı: {$pushNotification->failed_count}");
     }
 
     public function destroy(MobileUser $mobileUser): RedirectResponse

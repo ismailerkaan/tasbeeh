@@ -13,6 +13,15 @@
                 </div>
             </div>
         @endif
+        @if (session('error'))
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                        <div class="alert-body">{{ session('error') }}</div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <div class="row">
             <div class="col-12">
@@ -60,12 +69,32 @@
                                             <td>{{ $mobileUser->synced_at?->format('d.m.Y H:i') ?: '-' }}</td>
                                             <td class="text-end">
                                                 <a href="{{ route('admin.mobile-users.show', $mobileUser) }}" class="btn btn-sm btn-outline-info">Detay</a>
+                                                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#pushNotificationModal{{ $mobileUser->id }}">
+                                                    Bildirim
+                                                </button>
                                                 <a href="{{ route('admin.mobile-users.edit', $mobileUser) }}" class="btn btn-sm btn-outline-primary">Düzenle</a>
                                                 <form action="{{ route('admin.mobile-users.destroy', $mobileUser) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Bu kullanıcıyı silmek istediğine emin misin?')">Sil</button>
                                                 </form>
+                                                <div class="modal fade text-start" id="pushNotificationModal{{ $mobileUser->id }}" tabindex="-1" aria-labelledby="pushNotificationModalLabel{{ $mobileUser->id }}" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="pushNotificationModalLabel{{ $mobileUser->id }}">Kullanıcıya Bildirim Gönder</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                @include('admin.mobile-users._push_notification_form', [
+                                                                    'mobileUser' => $mobileUser,
+                                                                    'compact' => true,
+                                                                    'rows' => 3,
+                                                                ])
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty

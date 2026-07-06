@@ -10,6 +10,25 @@
             ->values();
     @endphp
     <section class="pb-1">
+        @if (session('status'))
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                        <div class="alert-body">{{ session('status') }}</div>
+                    </div>
+                </div>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                        <div class="alert-body">{{ session('error') }}</div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class="row mb-2">
             <div class="col-12 d-flex justify-content-between align-items-center">
                 <div>
@@ -19,6 +38,19 @@
                 <div class="d-flex gap-1">
                     <a href="{{ route('admin.mobile-users.edit', $mobileUser) }}" class="btn btn-primary">Düzenle</a>
                     <a href="{{ route('admin.mobile-users.index') }}" class="btn btn-outline-secondary">Listeye Dön</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0"><i data-feather="send" class="me-50"></i>Bu Kullanıcıya Bildirim Gönder</h4>
+                    </div>
+                    <div class="card-body">
+                        @include('admin.mobile-users._push_notification_form', ['mobileUser' => $mobileUser])
+                    </div>
                 </div>
             </div>
         </div>

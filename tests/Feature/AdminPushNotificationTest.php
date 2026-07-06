@@ -2,10 +2,15 @@
 
 use App\Jobs\SendPushNotificationJob;
 use App\Models\PushNotification;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 
 uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    $this->actingAs(User::factory()->create());
+});
 
 test('admin push notifications index page is accessible', function () {
     $response = $this->get(route('admin.push-notifications.index'));
