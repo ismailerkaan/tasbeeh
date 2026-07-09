@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\SpecialDaySharingPopupController;
 use App\Http\Controllers\Api\PrayerTimesController;
 use App\Http\Controllers\Api\StoreMobileFeedbackController;
 use App\Http\Controllers\Api\SyncUserStateController;
+use App\Http\Controllers\Api\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function (): void {
@@ -24,6 +25,9 @@ Route::prefix('v1')->group(function (): void {
     Route::get('/special-day-sharing-popup', SpecialDaySharingPopupController::class)->name('api.v1.special-day-sharing-popup.show');
     Route::get('/special-day-sharing-images/{image}', SpecialDaySharingImageController::class)->name('api.v1.special-day-sharing-images.show');
     Route::get('/prayer-times', PrayerTimesController::class)->name('api.v1.prayer-times.show');
+    Route::get('/tests/levels', [TestController::class, 'levels'])->name('api.v1.tests.levels');
+    Route::get('/tests/levels/{level}/questions', [TestController::class, 'questionsByLevel'])->name('api.v1.tests.levels.questions');
+    Route::get('/tests/questions', [TestController::class, 'questions'])->name('api.v1.tests.questions');
     Route::post('/push-tokens', PushTokenController::class)->name('api.v1.push-tokens.store');
     Route::post('/user-state/sync', SyncUserStateController::class)->name('api.v1.user-state.sync');
     Route::post('/feedback', StoreMobileFeedbackController::class)->name('api.v1.feedback.store');

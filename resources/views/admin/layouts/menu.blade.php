@@ -6,6 +6,8 @@
 @php($duasActive = request()->routeIs('admin.duas.*'))
 @php($hadisCategoriesActive = request()->routeIs('admin.hadis-categories.*'))
 @php($hadisesActive = request()->routeIs('admin.hadises.*'))
+@php($testLevelsActive = request()->routeIs('admin.test-levels.*'))
+@php($testQuestionsActive = request()->routeIs('admin.test-questions.*'))
 @php($pushNotificationsActive = request()->routeIs('admin.push-notifications.*'))
 @php($mobileUsersActive = request()->routeIs('admin.mobile-users.*'))
 @php($mobileFeedbacksActive = request()->routeIs('admin.mobile-feedbacks.*'))
@@ -83,6 +85,18 @@
                 <a class="d-flex align-items-center" href="{{ route('admin.hadises.index') }}">
                     <i data-feather="book"></i>
                     <span class="menu-title text-truncate">Hadisler</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $testLevelsActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.test-levels.index') }}">
+                    <i data-feather="bar-chart-2"></i>
+                    <span class="menu-title text-truncate">Test Seviyeleri</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $testQuestionsActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.test-questions.index') }}">
+                    <i data-feather="help-circle"></i>
+                    <span class="menu-title text-truncate">Test Soruları</span>
                 </a>
             </li>
             <li class="nav-item {{ $kaabaLiveStreamActive ? 'active' : '' }}">

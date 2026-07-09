@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\MobileUserController;
 use App\Http\Controllers\Admin\PushNotificationController;
 use App\Http\Controllers\Admin\ReligiousSpecialDayController;
 use App\Http\Controllers\Admin\SpecialDaySharingCampaignController;
+use App\Http\Controllers\Admin\TestLevelController;
+use App\Http\Controllers\Admin\TestQuestionController;
 use App\Http\Controllers\Admin\ZikirCategoryController;
 use App\Http\Controllers\Admin\ZikirController;
 use App\Http\Controllers\TestController;
@@ -81,6 +83,12 @@ Route::middleware('auth')->group(function (): void {
         ->except('show')
         ->parameters(['hadises' => 'hadis'])
         ->names('admin.hadises');
+    Route::resource('/admin/test-levels', TestLevelController::class)
+        ->except('show')
+        ->names('admin.test-levels');
+    Route::resource('/admin/test-questions', TestQuestionController::class)
+        ->except('show')
+        ->names('admin.test-questions');
     Route::get('/admin/kaaba-live-stream', [KaabaLiveStreamController::class, 'edit'])
         ->name('admin.kaaba-live-stream.edit');
     Route::put('/admin/kaaba-live-stream', [KaabaLiveStreamController::class, 'update'])
