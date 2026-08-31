@@ -323,7 +323,24 @@ class TestController extends Controller
             'answered_questions' => (int) $stats->answered_questions,
             'level_best_scores' => $stats->level_best_scores ?? [],
             'solved_question_ids' => $mobileUserId ? $this->solvedQuestionIds($mobileUserId) : [],
+            'completed_level_ids' => $mobileUserId ? $this->completedLevelIds($mobileUserId) : [],
         ];
+    }
+
+    /**
+     * @return array<int, int>
+     */
+    private function completedLevelIds(int $mobileUserId): array
+    {
+        return MobileUserTestRun::query()
+            ->where('mobile_user_id', $mobileUserId)
+            ->where('completed', true)
+            ->whereNotNull('test_level_id')
+            ->distinct()
+            ->pluck('test_level_id')
+            ->map(fn ($levelId) => (int) $levelId)
+            ->values()
+            ->all();
     }
 
     /**
@@ -354,6 +371,7 @@ class TestController extends Controller
             'answered_questions' => 0,
             'level_best_scores' => [],
             'solved_question_ids' => [],
+            'completed_level_ids' => [],
         ];
     }
 }

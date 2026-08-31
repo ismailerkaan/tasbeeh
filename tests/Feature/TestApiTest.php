@@ -183,13 +183,15 @@ test('repeated correct answers do not increase user score again', function () {
         ->assertCreated()
         ->assertJsonPath('data.score_awarded', 10)
         ->assertJsonPath('data.stats.total_score', 10)
-        ->assertJsonPath('data.stats.solved_question_ids.0', $question->id);
+        ->assertJsonPath('data.stats.solved_question_ids.0', $question->id)
+        ->assertJsonPath('data.stats.completed_level_ids.0', $level->id);
 
     $this->postJson(route('api.v1.tests.runs.store'), $payload)
         ->assertCreated()
         ->assertJsonPath('data.score_awarded', 0)
         ->assertJsonPath('data.stats.total_score', 10)
-        ->assertJsonPath('data.stats.solved_question_ids.0', $question->id);
+        ->assertJsonPath('data.stats.solved_question_ids.0', $question->id)
+        ->assertJsonPath('data.stats.completed_level_ids.0', $level->id);
 
     $mobileUser = MobileUser::query()->where('external_user_id', 'u_repeat_123')->firstOrFail();
 
