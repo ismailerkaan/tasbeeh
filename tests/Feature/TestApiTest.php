@@ -141,6 +141,61 @@ test('test questions endpoint returns active questions mapped for mobile app', f
     expect($response->json('data.questions'))->toHaveCount(1);
 });
 
+test('repeated correct answers do not increase user score again', function () {
+    $level = TestLevel::query()->create([
+        'name' => 'Başlangıç',
+        'is_active' => true,
+    ]);
+    $question = TestQuestion::query()->create([
+        'test_level_id' => $level->id,
+        'question' => 'İlk soru?',
+        'options' => ['Doğru', 'Yanlış'],
+        'correct_option_key' => 'A',
+        'is_active' => true,
+    ]);
+
+    $payload = [
+        'userId' => 'u_repeat_123',
+        'levelId' => $level->id,
+        'score' => 10,
+        'correctCount' => 1,
+        'totalQuestions' => 1,
+        'bestStreak' => 1,
+        'continuedWithAd' => false,
+        'endedReason' => 'completed',
+        'completed' => true,
+        'startedAt' => now()->subMinute()->toIso8601String(),
+        'endedAt' => now()->toIso8601String(),
+        'answers' => [
+            [
+                'questionId' => $question->id,
+                'questionOrder' => 1,
+                'selectedOptionId' => 'A',
+                'correctOptionId' => 'A',
+                'isCorrect' => true,
+                'scoreEarned' => 10,
+                'answeredAt' => now()->toIso8601String(),
+            ],
+        ],
+    ];
+
+    $this->postJson(route('api.v1.tests.runs.store'), $payload)
+        ->assertCreated()
+        ->assertJsonPath('data.score_awarded', 10)
+        ->assertJsonPath('data.stats.total_score', 10)
+        ->assertJsonPath('data.stats.solved_question_ids.0', $question->id);
+
+    $this->postJson(route('api.v1.tests.runs.store'), $payload)
+        ->assertCreated()
+        ->assertJsonPath('data.score_awarded', 0)
+        ->assertJsonPath('data.stats.total_score', 10)
+        ->assertJsonPath('data.stats.solved_question_ids.0', $question->id);
+
+    $mobileUser = MobileUser::query()->where('external_user_id', 'u_repeat_123')->firstOrFail();
+
+    expect(MobileUserTestRun::query()->where('mobile_user_id', $mobileUser->id)->pluck('score')->all())->toBe([10, 0]);
+    expect(MobileUserTestAnswer::query()->where('test_question_id', $question->id)->pluck('score_earned')->all())->toBe([10, 0]);
+});
 test('mobile app can store test run answers and aggregate user score', function () {
     $level = TestLevel::query()->create([
         'name' => 'Başlangıç',

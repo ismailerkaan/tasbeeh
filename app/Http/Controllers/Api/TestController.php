@@ -96,7 +96,7 @@ class TestController extends Controller
             ->where('mobile_user_id', $mobileUser->id)
             ->first();
 
-        return response()->json(['data' => $this->statsPayload($stats)]);
+        return response()->json(['data' => $this->statsPayload($stats, $mobileUser->id)]);
     }
 
     public function storeRun(StoreTestRunRequest $request): JsonResponse
@@ -114,11 +114,14 @@ class TestController extends Controller
                 ]
             );
 
+            $awardedAnswers = $this->awardedAnswers($mobileUser, $validated['answers']);
+            $awardedScore = array_sum(array_column($awardedAnswers, 'scoreEarned'));
+
             /** @var MobileUserTestRun $run */
             $run = MobileUserTestRun::query()->create([
                 'mobile_user_id' => $mobileUser->id,
                 'test_level_id' => (int) $validated['levelId'],
-                'score' => (int) $validated['score'],
+                'score' => $awardedScore,
                 'correct_count' => (int) $validated['correctCount'],
                 'total_questions' => (int) $validated['totalQuestions'],
                 'best_streak' => (int) $validated['bestStreak'],
@@ -129,7 +132,7 @@ class TestController extends Controller
                 'ended_at' => isset($validated['endedAt']) ? Carbon::parse((string) $validated['endedAt']) : now(),
             ]);
 
-            foreach ($validated['answers'] as $answer) {
+            foreach ($awardedAnswers as $answer) {
                 MobileUserTestAnswer::query()->create([
                     'mobile_user_test_run_id' => $run->id,
                     'test_question_id' => (int) $answer['questionId'],
@@ -142,11 +145,12 @@ class TestController extends Controller
                 ]);
             }
 
-            $stats = $this->updateStats($mobileUser, $validated);
+            $stats = $this->updateStats($mobileUser, $validated, $awardedScore);
 
             return [
                 'run' => $run,
                 'stats' => $stats,
+                'score_awarded' => $awardedScore,
             ];
         });
 
@@ -154,7 +158,8 @@ class TestController extends Controller
             'message' => 'Test run stored.',
             'data' => [
                 'run_id' => $result['run']->id,
-                'stats' => $this->statsPayload($result['stats']),
+                'score_awarded' => $result['score_awarded'],
+                'stats' => $this->statsPayload($result['stats'], $result['run']->mobile_user_id),
             ],
         ], 201);
     }
@@ -191,12 +196,53 @@ class TestController extends Controller
         return $this->questionsByLevel($level);
     }
 
-    private function updateStats(MobileUser $mobileUser, array $validated): MobileUserTestStat
+    /**
+     * @param  array<int, array<string, mixed>>  $answers
+     * @return array<int, array<string, mixed>>
+     */
+    private function awardedAnswers(MobileUser $mobileUser, array $answers): array
+    {
+        $questionIds = collect($answers)
+            ->pluck('questionId')
+            ->map(fn ($questionId) => (int) $questionId)
+            ->filter()
+            ->unique()
+            ->values();
+
+        $previouslyCorrectQuestionIds = MobileUserTestAnswer::query()
+            ->whereIn('test_question_id', $questionIds)
+            ->where('is_correct', true)
+            ->whereHas('run', fn ($query) => $query->where('mobile_user_id', $mobileUser->id))
+            ->pluck('test_question_id')
+            ->map(fn ($questionId) => (int) $questionId)
+            ->all();
+
+        $alreadyAwarded = array_fill_keys($previouslyCorrectQuestionIds, true);
+
+        return collect($answers)
+            ->map(function (array $answer) use (&$alreadyAwarded): array {
+                $questionId = (int) $answer['questionId'];
+                $isCorrect = (bool) $answer['isCorrect'];
+                $isFirstCorrect = $isCorrect && ! isset($alreadyAwarded[$questionId]);
+
+                if ($isFirstCorrect) {
+                    $alreadyAwarded[$questionId] = true;
+                }
+
+                return [
+                    ...$answer,
+                    'scoreEarned' => $isFirstCorrect ? (int) $answer['scoreEarned'] : 0,
+                ];
+            })
+            ->all();
+    }
+
+    private function updateStats(MobileUser $mobileUser, array $validated, int $awardedScore): MobileUserTestStat
     {
         $stats = MobileUserTestStat::query()->firstOrNew(['mobile_user_id' => $mobileUser->id]);
         $levelBestScores = is_array($stats->level_best_scores) ? $stats->level_best_scores : [];
         $levelId = (string) $validated['levelId'];
-        $score = (int) $validated['score'];
+        $score = $awardedScore;
 
         $stats->fill([
             'total_score' => (int) ($stats->total_score ?? 0) + $score,
@@ -264,7 +310,7 @@ class TestController extends Controller
     /**
      * @return array<string, mixed>
      */
-    private function statsPayload(?MobileUserTestStat $stats): array
+    private function statsPayload(?MobileUserTestStat $stats, ?int $mobileUserId = null): array
     {
         if (! $stats) {
             return $this->emptyStats();
@@ -276,7 +322,24 @@ class TestController extends Controller
             'completed_runs' => (int) $stats->completed_runs,
             'answered_questions' => (int) $stats->answered_questions,
             'level_best_scores' => $stats->level_best_scores ?? [],
+            'solved_question_ids' => $mobileUserId ? $this->solvedQuestionIds($mobileUserId) : [],
         ];
+    }
+
+    /**
+     * @return array<int, int>
+     */
+    private function solvedQuestionIds(int $mobileUserId): array
+    {
+        return MobileUserTestAnswer::query()
+            ->where('is_correct', true)
+            ->whereHas('run', fn ($query) => $query->where('mobile_user_id', $mobileUserId))
+            ->whereNotNull('test_question_id')
+            ->distinct()
+            ->pluck('test_question_id')
+            ->map(fn ($questionId) => (int) $questionId)
+            ->values()
+            ->all();
     }
 
     /**
@@ -290,6 +353,7 @@ class TestController extends Controller
             'completed_runs' => 0,
             'answered_questions' => 0,
             'level_best_scores' => [],
+            'solved_question_ids' => [],
         ];
     }
 }
