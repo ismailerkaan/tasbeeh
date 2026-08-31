@@ -23,8 +23,8 @@ return new class extends Migration
             $table->timestamp('ended_at')->nullable();
             $table->timestamps();
 
-            $table->index(['mobile_user_id', 'created_at']);
-            $table->index(['test_level_id', 'score']);
+            $table->index(['mobile_user_id', 'created_at'], 'mutr_user_created_idx');
+            $table->index(['test_level_id', 'score'], 'mutr_level_score_idx');
         });
     }
 

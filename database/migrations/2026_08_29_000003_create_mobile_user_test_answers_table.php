@@ -20,8 +20,8 @@ return new class extends Migration
             $table->timestamp('answered_at')->nullable();
             $table->timestamps();
 
-            $table->index(['mobile_user_test_run_id', 'question_order']);
-            $table->index(['test_question_id', 'is_correct']);
+            $table->index(['mobile_user_test_run_id', 'question_order'], 'muta_run_order_idx');
+            $table->index(['test_question_id', 'is_correct'], 'muta_question_correct_idx');
         });
     }
 
