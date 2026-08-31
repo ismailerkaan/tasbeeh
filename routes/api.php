@@ -26,6 +26,8 @@ Route::prefix('v1')->group(function (): void {
     Route::get('/special-day-sharing-images/{image}', SpecialDaySharingImageController::class)->name('api.v1.special-day-sharing-images.show');
     Route::get('/prayer-times', PrayerTimesController::class)->name('api.v1.prayer-times.show');
     Route::get('/tests/levels', [TestController::class, 'levels'])->name('api.v1.tests.levels');
+    Route::get('/tests/stats', [TestController::class, 'stats'])->name('api.v1.tests.stats');
+    Route::post('/tests/runs', [TestController::class, 'storeRun'])->name('api.v1.tests.runs.store');
     Route::get('/tests/levels/{level}/questions', [TestController::class, 'questionsByLevel'])->name('api.v1.tests.levels.questions');
     Route::get('/tests/questions', [TestController::class, 'questions'])->name('api.v1.tests.questions');
     Route::post('/push-tokens', PushTokenController::class)->name('api.v1.push-tokens.store');

@@ -78,4 +78,14 @@ class MobileUser extends Model
     {
         return $this->hasMany(MobileUserZikirCount::class);
     }
+
+    public function testStat(): HasOne
+    {
+        return $this->hasOne(MobileUserTestStat::class);
+    }
+
+    public function testRuns(): HasMany
+    {
+        return $this->hasMany(MobileUserTestRun::class);
+    }
 }
