@@ -176,7 +176,7 @@ test('admin can see mobile user test history and answers', function () {
     $this->get(route('admin.mobile-users.show', $mobileUser))
         ->assertOk()
         ->assertSee('Test Özeti')
-        ->assertSee('Verdiği Cevaplar')
+        ->assertSee('Test Cevap Detayı')->assertSee('Detay')
         ->assertSee('Temel Seviye')
         ->assertSee('Test sorusu nedir?')
         ->assertSee('Doğru şık')

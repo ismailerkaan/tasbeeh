@@ -242,7 +242,6 @@
             </div>
         </div>
 
-
         <div class="row mb-1">
             <div class="col-12 mb-1">
                 <div class="card">
@@ -282,6 +281,7 @@
                                             <th>Seri</th>
                                             <th>Durum</th>
                                             <th>Devam</th>
+                                            <th class="text-end">Detay</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -308,71 +308,90 @@
                                                         <span class="badge bg-light-secondary text-secondary">Yok</span>
                                                     @endif
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="7" class="bg-light">
-                                                    <strong>Verdiği Cevaplar</strong>
-                                                    <div class="table-responsive mt-50">
-                                                        <table class="table table-sm mb-0">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>#</th>
-                                                                    <th>Soru</th>
-                                                                    <th>Verdiği Cevap</th>
-                                                                    <th>Doğru Cevap</th>
-                                                                    <th>Sonuç</th>
-                                                                    <th>Puan</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @forelse ($run->answers as $answer)
-                                                                    @php($question = $answer->question)
-                                                                    @php($options = collect($question?->options ?? [])->values())
-                                                                    @php($optionKeys = ['A', 'B', 'C', 'D', 'E'])
-                                                                    @php($selectedIndex = array_search($answer->selected_option_id, $optionKeys, true))
-                                                                    @php($correctIndex = array_search($answer->correct_option_id, $optionKeys, true))
-                                                                    <tr>
-                                                                        <td>{{ (int) $answer->question_order }}</td>
-                                                                        <td>{{ $question ? \Illuminate\Support\Str::limit($question->question, 120) : 'Silinmiş soru' }}</td>
-                                                                        <td>
-                                                                            <strong>{{ $answer->selected_option_id }}</strong>
-                                                                            <small class="text-muted d-block">{{ $selectedIndex !== false ? \Illuminate\Support\Str::limit((string) $options->get($selectedIndex, ''), 90) : '-' }}</small>
-                                                                        </td>
-                                                                        <td>
-                                                                            <strong>{{ $answer->correct_option_id ?: '-' }}</strong>
-                                                                            <small class="text-muted d-block">{{ $correctIndex !== false ? \Illuminate\Support\Str::limit((string) $options->get($correctIndex, ''), 90) : '-' }}</small>
-                                                                        </td>
-                                                                        <td>
-                                                                            @if ($answer->is_correct)
-                                                                                <span class="badge bg-light-success text-success">Doğru</span>
-                                                                            @else
-                                                                                <span class="badge bg-light-danger text-danger">Yanlış</span>
-                                                                            @endif
-                                                                        </td>
-                                                                        <td>{{ (int) $answer->score_earned }}</td>
-                                                                    </tr>
-                                                                @empty
-                                                                    <tr>
-                                                                        <td colspan="6" class="text-center text-muted">Bu denemede cevap kaydı yok.</td>
-                                                                    </tr>
-                                                                @endforelse
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                <td class="text-end">
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#testRunModal{{ $run->id }}">
+                                                        Detay
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
+
+                            @foreach ($mobileUser->testRuns as $run)
+                                <div class="modal fade text-start" id="testRunModal{{ $run->id }}" tabindex="-1" aria-labelledby="testRunModalLabel{{ $run->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div>
+                                                    <h5 class="modal-title" id="testRunModalLabel{{ $run->id }}">Test Cevap Detayı</h5>
+                                                    <small class="text-muted">
+                                                        {{ $run->level?->name ?? '-' }} · {{ $run->ended_at?->format('d.m.Y H:i') ?: $run->created_at?->format('d.m.Y H:i') }} · Skor: {{ number_format((int) $run->score, 0, ',', '.') }}
+                                                    </small>
+                                                </div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Soru</th>
+                                                                <th>Verdiği Cevap</th>
+                                                                <th>Doğru Cevap</th>
+                                                                <th>Sonuç</th>
+                                                                <th>Puan</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @forelse ($run->answers as $answer)
+                                                                @php($question = $answer->question)
+                                                                @php($options = collect($question?->options ?? [])->values())
+                                                                @php($optionKeys = ['A', 'B', 'C', 'D', 'E'])
+                                                                @php($selectedIndex = array_search($answer->selected_option_id, $optionKeys, true))
+                                                                @php($correctIndex = array_search($answer->correct_option_id, $optionKeys, true))
+                                                                <tr>
+                                                                    <td>{{ (int) $answer->question_order }}</td>
+                                                                    <td>{{ $question ? \Illuminate\Support\Str::limit($question->question, 180) : 'Silinmiş soru' }}</td>
+                                                                    <td>
+                                                                        <strong>{{ $answer->selected_option_id }}</strong>
+                                                                        <small class="text-muted d-block">{{ $selectedIndex !== false ? \Illuminate\Support\Str::limit((string) $options->get($selectedIndex, ''), 140) : '-' }}</small>
+                                                                    </td>
+                                                                    <td>
+                                                                        <strong>{{ $answer->correct_option_id ?: '-' }}</strong>
+                                                                        <small class="text-muted d-block">{{ $correctIndex !== false ? \Illuminate\Support\Str::limit((string) $options->get($correctIndex, ''), 140) : '-' }}</small>
+                                                                    </td>
+                                                                    <td>
+                                                                        @if ($answer->is_correct)
+                                                                            <span class="badge bg-light-success text-success">Doğru</span>
+                                                                        @else
+                                                                            <span class="badge bg-light-danger text-danger">Yanlış</span>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>{{ (int) $answer->score_earned }}</td>
+                                                                </tr>
+                                                            @empty
+                                                                <tr>
+                                                                    <td colspan="6" class="text-center text-muted">Bu denemede cevap kaydı yok.</td>
+                                                                </tr>
+                                                            @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         @else
                             <p class="text-muted mb-0">Kullanıcı henüz test çözmemiş.</p>
                         @endif
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mb-1">
+        </div>        <div class="row mb-1">
             <div class="col-12 mb-1">
                 <div class="card h-100">
                     <div class="card-header d-flex justify-content-between align-items-center">
