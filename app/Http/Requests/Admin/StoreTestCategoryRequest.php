@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTestLevelRequest extends FormRequest
+class StoreTestCategoryRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -18,7 +18,6 @@ class StoreTestLevelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'test_category_id' => ['nullable', 'integer', 'exists:test_categories,id'],
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'sort_order' => ['required', 'integer', 'min:0', 'max:65535'],
@@ -29,7 +28,6 @@ class StoreTestLevelRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'test_category_id' => $this->filled('test_category_id') ? $this->integer('test_category_id') : null,
             'is_active' => $this->boolean('is_active'),
         ]);
     }

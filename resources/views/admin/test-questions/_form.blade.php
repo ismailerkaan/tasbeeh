@@ -10,7 +10,7 @@
                 <option value="">Seviye seçin</option>
                 @foreach ($levels as $level)
                     <option value="{{ $level->id }}" @selected((int) old('test_level_id', $testQuestion->test_level_id ?? 0) === $level->id)>
-                        {{ $level->name }}
+                        {{ $level->category?->name ? $level->category->name.' / '.$level->name : $level->name }}
                     </option>
                 @endforeach
             </select>

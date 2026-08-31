@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
-class TestLevel extends Model
+class TestCategory extends Model
 {
     protected $fillable = [
-        'test_category_id',
         'name',
         'description',
         'sort_order',
@@ -22,7 +21,6 @@ class TestLevel extends Model
     protected function casts(): array
     {
         return [
-            'test_category_id' => 'integer',
             'sort_order' => 'integer',
             'is_active' => 'boolean',
             'created_at' => 'datetime',
@@ -30,13 +28,13 @@ class TestLevel extends Model
         ];
     }
 
-    public function category(): BelongsTo
+    public function levels(): HasMany
     {
-        return $this->belongsTo(TestCategory::class, 'test_category_id');
+        return $this->hasMany(TestLevel::class);
     }
 
-    public function questions(): HasMany
+    public function questions(): HasManyThrough
     {
-        return $this->hasMany(TestQuestion::class);
+        return $this->hasManyThrough(TestQuestion::class, TestLevel::class, 'test_category_id', 'test_level_id');
     }
 }

@@ -3,6 +3,22 @@
 <div class="row">
     <div class="col-12">
         <div class="mb-1">
+            <label class="form-label" for="test_category_id">Kategori</label>
+            <select id="test_category_id" name="test_category_id" class="form-select @error('test_category_id') is-invalid @enderror">
+                <option value="">Kategori seçin</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" @selected((int) old('test_category_id', $testLevel->test_category_id ?? 0) === $category->id)>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+            <div class="form-text">Örn: Namaz ile alakalı sorular. Seviye bu kategorinin altında görünür.</div>
+            @error('test_category_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="mb-1">
             <label class="form-label" for="name">Seviye Adı</label>
             <input id="name" type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $testLevel->name ?? '') }}" maxlength="255" required>
             @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\MobileUserController;
 use App\Http\Controllers\Admin\PushNotificationController;
 use App\Http\Controllers\Admin\ReligiousSpecialDayController;
 use App\Http\Controllers\Admin\SpecialDaySharingCampaignController;
+use App\Http\Controllers\Admin\TestCategoryController;
 use App\Http\Controllers\Admin\TestLevelController;
 use App\Http\Controllers\Admin\TestQuestionController;
 use App\Http\Controllers\Admin\ZikirCategoryController;
@@ -83,6 +84,9 @@ Route::middleware('auth')->group(function (): void {
         ->except('show')
         ->parameters(['hadises' => 'hadis'])
         ->names('admin.hadises');
+    Route::resource('/admin/test-categories', TestCategoryController::class)
+        ->except('show')
+        ->names('admin.test-categories');
     Route::resource('/admin/test-levels', TestLevelController::class)
         ->except('show')
         ->names('admin.test-levels');

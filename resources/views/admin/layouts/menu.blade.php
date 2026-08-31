@@ -6,6 +6,7 @@
 @php($duasActive = request()->routeIs('admin.duas.*'))
 @php($hadisCategoriesActive = request()->routeIs('admin.hadis-categories.*'))
 @php($hadisesActive = request()->routeIs('admin.hadises.*'))
+@php($testCategoriesActive = request()->routeIs('admin.test-categories.*'))
 @php($testLevelsActive = request()->routeIs('admin.test-levels.*'))
 @php($testQuestionsActive = request()->routeIs('admin.test-questions.*'))
 @php($pushNotificationsActive = request()->routeIs('admin.push-notifications.*'))
@@ -85,6 +86,12 @@
                 <a class="d-flex align-items-center" href="{{ route('admin.hadises.index') }}">
                     <i data-feather="book"></i>
                     <span class="menu-title text-truncate">Hadisler</span>
+                </a>
+            </li>
+            <li class="nav-item {{ $testCategoriesActive ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.test-categories.index') }}">
+                    <i data-feather="grid"></i>
+                    <span class="menu-title text-truncate">Test Kategorileri</span>
                 </a>
             </li>
             <li class="nav-item {{ $testLevelsActive ? 'active' : '' }}">

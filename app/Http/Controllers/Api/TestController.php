@@ -8,6 +8,7 @@ use App\Models\MobileUser;
 use App\Models\MobileUserTestAnswer;
 use App\Models\MobileUserTestRun;
 use App\Models\MobileUserTestStat;
+use App\Models\TestCategory;
 use App\Models\TestLevel;
 use App\Models\TestQuestion;
 use Illuminate\Http\JsonResponse;
@@ -17,16 +18,57 @@ use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
-    public function levels(): JsonResponse
+    public function categories(): JsonResponse
     {
+        $categories = TestCategory::query()
+            ->where('is_active', true)
+            ->withCount([
+                'levels as level_count' => fn ($query) => $query->where('is_active', true),
+                'questions as question_count' => fn ($query) => $query
+                    ->where('test_questions.is_active', true)
+                    ->whereHas('level', fn ($levelQuery) => $levelQuery->where('is_active', true)),
+            ])
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get()
+            ->map(fn (TestCategory $category) => $this->categoryPayload($category));
+
+        $uncategorizedLevels = TestLevel::query()
+            ->whereNull('test_category_id')
+            ->where('is_active', true)
+            ->withCount(['questions' => fn ($query) => $query->where('is_active', true)])
+            ->get();
+
+        if ($uncategorizedLevels->isNotEmpty()) {
+            $categories->push([
+                'id' => 'uncategorized',
+                'title' => 'Genel Testler',
+                'description' => 'Henüz kategoriye bağlanmamış testler.',
+                'level_count' => $uncategorizedLevels->count(),
+                'question_count' => $uncategorizedLevels->sum('questions_count'),
+                'order' => 65535,
+            ]);
+        }
+
+        return response()->json(['data' => $categories->values()]);
+    }
+
+    public function levels(Request $request): JsonResponse
+    {
+        $categoryId = $request->query('category_id');
         $levels = TestLevel::query()
             ->where('is_active', true)
+            ->with('category')
+            ->when($categoryId === 'uncategorized', fn ($query) => $query->whereNull('test_category_id'))
+            ->when($categoryId !== null && $categoryId !== 'uncategorized' && ctype_digit((string) $categoryId), fn ($query) => $query->where('test_category_id', (int) $categoryId))
             ->withCount(['questions' => fn ($query) => $query->where('is_active', true)])
             ->orderBy('sort_order')
             ->orderBy('id')
             ->get()
             ->map(fn (TestLevel $level) => [
                 'id' => $level->id,
+                'category_id' => $level->test_category_id,
+                'category_title' => $level->category?->name,
                 'title' => $level->name,
                 'description' => $level->description,
                 'question_count' => $level->questions_count,
@@ -121,10 +163,14 @@ class TestController extends Controller
     {
         abort_unless($level->is_active, 404);
 
+        $level->loadMissing('category');
+
         return response()->json([
             'data' => [
                 'level' => [
                     'id' => $level->id,
+                    'category_id' => $level->test_category_id,
+                    'category_title' => $level->category?->name,
                     'title' => $level->name,
                     'description' => $level->description,
                 ],
@@ -174,6 +220,21 @@ class TestController extends Controller
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->orderBy('id');
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function categoryPayload(TestCategory $category): array
+    {
+        return [
+            'id' => $category->id,
+            'title' => $category->name,
+            'description' => $category->description,
+            'level_count' => (int) $category->level_count,
+            'question_count' => (int) $category->question_count,
+            'order' => $category->sort_order,
+        ];
     }
 
     /**

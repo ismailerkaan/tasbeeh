@@ -17,7 +17,7 @@ class TestQuestionController extends Controller
     {
         return view('admin.test-questions.index', [
             'testQuestions' => TestQuestion::query()
-                ->with('level')
+                ->with('level.category')
                 ->latest('id')
                 ->paginate(15),
         ]);
@@ -65,6 +65,7 @@ class TestQuestionController extends Controller
     private function selectableLevels(?int $selectedLevelId = null): Collection
     {
         return TestLevel::query()
+            ->with('category')
             ->where(function ($query) use ($selectedLevelId): void {
                 $query->where('is_active', true);
 
@@ -72,6 +73,7 @@ class TestQuestionController extends Controller
                     $query->orWhere('id', $selectedLevelId);
                 }
             })
+            ->orderBy('test_category_id')
             ->orderBy('sort_order')
             ->orderBy('name')
             ->get();

@@ -25,6 +25,7 @@ Route::prefix('v1')->group(function (): void {
     Route::get('/special-day-sharing-popup', SpecialDaySharingPopupController::class)->name('api.v1.special-day-sharing-popup.show');
     Route::get('/special-day-sharing-images/{image}', SpecialDaySharingImageController::class)->name('api.v1.special-day-sharing-images.show');
     Route::get('/prayer-times', PrayerTimesController::class)->name('api.v1.prayer-times.show');
+    Route::get('/tests/categories', [TestController::class, 'categories'])->name('api.v1.tests.categories');
     Route::get('/tests/levels', [TestController::class, 'levels'])->name('api.v1.tests.levels');
     Route::get('/tests/stats', [TestController::class, 'stats'])->name('api.v1.tests.stats');
     Route::post('/tests/runs', [TestController::class, 'storeRun'])->name('api.v1.tests.runs.store');

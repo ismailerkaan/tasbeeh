@@ -26,6 +26,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th>Kategori</th>
                                         <th>Seviye</th>
                                         <th>Açıklama</th>
                                         <th>Soru</th>
@@ -37,6 +38,7 @@
                                 <tbody>
                                     @forelse ($testLevels as $testLevel)
                                         <tr>
+                                            <td>{{ $testLevel->category?->name ?? 'Kategori yok' }}</td>
                                             <td>{{ $testLevel->name }}</td>
                                             <td>{{ \Illuminate\Support\Str::limit($testLevel->description, 80) }}</td>
                                             <td>{{ $testLevel->questions_count }}</td>
@@ -59,7 +61,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center text-muted">Henüz test seviyesi yok.</td>
+                                            <td colspan="7" class="text-center text-muted">Henüz test seviyesi yok.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

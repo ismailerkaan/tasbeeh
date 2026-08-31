@@ -4,14 +4,61 @@ use App\Models\MobileUser;
 use App\Models\MobileUserTestAnswer;
 use App\Models\MobileUserTestRun;
 use App\Models\MobileUserTestStat;
+use App\Models\TestCategory;
 use App\Models\TestLevel;
 use App\Models\TestQuestion;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
+test('test categories endpoint returns active categories with level and question counts', function () {
+    $category = TestCategory::query()->create([
+        'name' => 'Namaz ile alakalı sorular',
+        'description' => 'Namaz bilgisi testleri',
+        'sort_order' => 1,
+        'is_active' => true,
+    ]);
+
+    $level = TestLevel::query()->create([
+        'test_category_id' => $category->id,
+        'name' => 'Başlangıç',
+        'is_active' => true,
+    ]);
+
+    TestQuestion::query()->create([
+        'test_level_id' => $level->id,
+        'question' => 'İlk soru?',
+        'options' => ['A seçeneği', 'B seçeneği'],
+        'correct_option_key' => 'A',
+        'is_active' => true,
+    ]);
+
+    TestCategory::query()->create([
+        'name' => 'Pasif kategori',
+        'is_active' => false,
+    ]);
+
+    $response = $this->getJson(route('api.v1.tests.categories'));
+
+    $response
+        ->assertOk()
+        ->assertJsonPath('data.0.id', $category->id)
+        ->assertJsonPath('data.0.title', 'Namaz ile alakalı sorular')
+        ->assertJsonPath('data.0.description', 'Namaz bilgisi testleri')
+        ->assertJsonPath('data.0.level_count', 1)
+        ->assertJsonPath('data.0.question_count', 1);
+
+    expect($response->json('data'))->toHaveCount(1);
+});
+
 test('test levels endpoint returns active levels with question counts', function () {
+    $category = TestCategory::query()->create([
+        'name' => 'Namaz ile alakalı sorular',
+        'is_active' => true,
+    ]);
+
     $activeLevel = TestLevel::query()->create([
+        'test_category_id' => $category->id,
         'name' => 'Başlangıç',
         'description' => 'Temel bilgiler',
         'sort_order' => 2,
@@ -40,11 +87,13 @@ test('test levels endpoint returns active levels with question counts', function
         'is_active' => false,
     ]);
 
-    $response = $this->getJson(route('api.v1.tests.levels'));
+    $response = $this->getJson(route('api.v1.tests.levels', ['category_id' => $category->id]));
 
     $response
         ->assertOk()
         ->assertJsonPath('data.0.id', $activeLevel->id)
+        ->assertJsonPath('data.0.category_id', $category->id)
+        ->assertJsonPath('data.0.category_title', 'Namaz ile alakalı sorular')
         ->assertJsonPath('data.0.title', 'Başlangıç')
         ->assertJsonPath('data.0.description', 'Temel bilgiler')
         ->assertJsonPath('data.0.question_count', 1);
