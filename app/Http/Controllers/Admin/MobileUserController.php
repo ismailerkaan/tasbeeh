@@ -38,8 +38,8 @@ class MobileUserController extends Controller
 
         return view('admin.mobile-users.index', [
             'mobileUsers' => MobileUser::query()
-                ->with('lastZikir')
-                ->withCount(['devices', 'readZikirs', 'readDuas'])
+                ->with(['lastZikir', 'testStat'])
+                ->withCount(['devices', 'readZikirs', 'readDuas', 'testRuns'])
                 ->withMax('devices as last_login_at', 'last_seen_at')
                 ->orderBy($sort, $direction)
                 ->paginate(20)
@@ -62,9 +62,18 @@ class MobileUserController extends Controller
             'zikirCounts' => fn ($query) => $query->orderByDesc('count')->latest('id'),
             'readZikirs' => fn ($query) => $query->latest('id'),
             'readDuas' => fn ($query) => $query->latest('id'),
+            'testStat',
+            'testRuns' => fn ($query) => $query
+                ->with([
+                    'level',
+                    'answers' => fn ($answerQuery) => $answerQuery->with('question')->orderBy('question_order')->orderBy('id'),
+                ])
+                ->latest('ended_at')
+                ->latest('id')
+                ->limit(20),
         ]);
 
-        $mobileUser->loadCount(['devices', 'readZikirs', 'readDuas']);
+        $mobileUser->loadCount(['devices', 'readZikirs', 'readDuas', 'testRuns']);
         $mobileUser->loadMax('devices as last_login_at', 'last_seen_at');
 
         $zikirCountIds = $mobileUser->zikirCounts

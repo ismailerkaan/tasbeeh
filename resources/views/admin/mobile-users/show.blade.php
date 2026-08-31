@@ -242,6 +242,136 @@
             </div>
         </div>
 
+
+        <div class="row mb-1">
+            <div class="col-12 mb-1">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0"><i data-feather="award" class="me-50"></i>Test Özeti</h4>
+                        <span class="badge bg-light-primary text-primary">{{ $mobileUser->test_runs_count }} deneme</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row match-height">
+                            <div class="col-xl-3 col-md-6 col-12 mb-1">
+                                <small class="text-muted d-block">Toplam Puan</small>
+                                <h3 class="fw-bolder mb-0">{{ number_format((int) ($mobileUser->testStat?->total_score ?? 0), 0, ',', '.') }}</h3>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-12 mb-1">
+                                <small class="text-muted d-block">En İyi Skor</small>
+                                <h3 class="fw-bolder mb-0">{{ number_format((int) ($mobileUser->testStat?->best_run_score ?? 0), 0, ',', '.') }}</h3>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-12 mb-1">
+                                <small class="text-muted d-block">Tamamlanan Test</small>
+                                <h3 class="fw-bolder mb-0">{{ number_format((int) ($mobileUser->testStat?->completed_runs ?? 0), 0, ',', '.') }}</h3>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-12 mb-1">
+                                <small class="text-muted d-block">Cevaplanan Soru</small>
+                                <h3 class="fw-bolder mb-0">{{ number_format((int) ($mobileUser->testStat?->answered_questions ?? 0), 0, ',', '.') }}</h3>
+                            </div>
+                        </div>
+
+                        @if ($mobileUser->testRuns->isNotEmpty())
+                            <div class="table-responsive mt-1">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tarih</th>
+                                            <th>Seviye</th>
+                                            <th>Skor</th>
+                                            <th>Doğru</th>
+                                            <th>Seri</th>
+                                            <th>Durum</th>
+                                            <th>Devam</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($mobileUser->testRuns as $run)
+                                            <tr>
+                                                <td>{{ $run->ended_at?->format('d.m.Y H:i') ?: $run->created_at?->format('d.m.Y H:i') }}</td>
+                                                <td>{{ $run->level?->name ?? '-' }}</td>
+                                                <td><span class="badge bg-light-primary text-primary">{{ number_format((int) $run->score, 0, ',', '.') }}</span></td>
+                                                <td>{{ (int) $run->correct_count }} / {{ (int) $run->total_questions }}</td>
+                                                <td>{{ (int) $run->best_streak }}</td>
+                                                <td>
+                                                    @if ($run->completed)
+                                                        <span class="badge bg-light-success text-success">Tamamlandı</span>
+                                                    @elseif ($run->ended_reason === 'wrong_restart')
+                                                        <span class="badge bg-light-danger text-danger">Yanlışta Bıraktı</span>
+                                                    @else
+                                                        <span class="badge bg-light-secondary text-secondary">Yarım Kaldı</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($run->continued_with_ad)
+                                                        <span class="badge bg-light-warning text-warning">Reklamla Devam</span>
+                                                    @else
+                                                        <span class="badge bg-light-secondary text-secondary">Yok</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="7" class="bg-light">
+                                                    <strong>Verdiği Cevaplar</strong>
+                                                    <div class="table-responsive mt-50">
+                                                        <table class="table table-sm mb-0">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Soru</th>
+                                                                    <th>Verdiği Cevap</th>
+                                                                    <th>Doğru Cevap</th>
+                                                                    <th>Sonuç</th>
+                                                                    <th>Puan</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @forelse ($run->answers as $answer)
+                                                                    @php($question = $answer->question)
+                                                                    @php($options = collect($question?->options ?? [])->values())
+                                                                    @php($optionKeys = ['A', 'B', 'C', 'D', 'E'])
+                                                                    @php($selectedIndex = array_search($answer->selected_option_id, $optionKeys, true))
+                                                                    @php($correctIndex = array_search($answer->correct_option_id, $optionKeys, true))
+                                                                    <tr>
+                                                                        <td>{{ (int) $answer->question_order }}</td>
+                                                                        <td>{{ $question ? \Illuminate\Support\Str::limit($question->question, 120) : 'Silinmiş soru' }}</td>
+                                                                        <td>
+                                                                            <strong>{{ $answer->selected_option_id }}</strong>
+                                                                            <small class="text-muted d-block">{{ $selectedIndex !== false ? \Illuminate\Support\Str::limit((string) $options->get($selectedIndex, ''), 90) : '-' }}</small>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>{{ $answer->correct_option_id ?: '-' }}</strong>
+                                                                            <small class="text-muted d-block">{{ $correctIndex !== false ? \Illuminate\Support\Str::limit((string) $options->get($correctIndex, ''), 90) : '-' }}</small>
+                                                                        </td>
+                                                                        <td>
+                                                                            @if ($answer->is_correct)
+                                                                                <span class="badge bg-light-success text-success">Doğru</span>
+                                                                            @else
+                                                                                <span class="badge bg-light-danger text-danger">Yanlış</span>
+                                                                            @endif
+                                                                        </td>
+                                                                        <td>{{ (int) $answer->score_earned }}</td>
+                                                                    </tr>
+                                                                @empty
+                                                                    <tr>
+                                                                        <td colspan="6" class="text-center text-muted">Bu denemede cevap kaydı yok.</td>
+                                                                    </tr>
+                                                                @endforelse
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <p class="text-muted mb-0">Kullanıcı henüz test çözmemiş.</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row mb-1">
             <div class="col-12 mb-1">
                 <div class="card h-100">

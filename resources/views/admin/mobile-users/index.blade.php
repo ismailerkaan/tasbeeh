@@ -40,6 +40,7 @@
                                         <th>Bildirim</th>
                                         <th>Cihaz</th>
                                         <th>Toplam Zikir</th>
+                                        <th>Test Puanı</th>
                                         <th>Okunan</th>
                                         <th>
                                             <div class="d-inline-flex align-items-center gap-1">
@@ -65,7 +66,11 @@
                                             </td>
                                             <td>{{ $mobileUser->devices_count }}</td>
                                             <td>{{ number_format((int) $mobileUser->total_zikir_count, 0, ',', '.') }}</td>
-                                            <td>Zikir: {{ $mobileUser->read_zikirs_count }} / Dua: {{ $mobileUser->read_duas_count }}</td>
+                                            <td>
+                                                <span class="fw-bold">{{ number_format((int) ($mobileUser->testStat?->total_score ?? 0), 0, ',', '.') }}</span>
+                                                <small class="text-muted d-block">Rekor: {{ number_format((int) ($mobileUser->testStat?->best_run_score ?? 0), 0, ',', '.') }}</small>
+                                            </td>
+                                            <td>Zikir: {{ $mobileUser->read_zikirs_count }} / Dua: {{ $mobileUser->read_duas_count }} / Test: {{ $mobileUser->test_runs_count }}</td>
                                             <td>{{ $mobileUser->synced_at?->format('d.m.Y H:i') ?: '-' }}</td>
                                             <td class="text-end">
                                                 <a href="{{ route('admin.mobile-users.show', $mobileUser) }}" class="btn btn-sm btn-outline-info">Detay</a>
@@ -99,7 +104,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="8" class="text-center text-muted">Henüz kullanıcı yok.</td>
+                                            <td colspan="9" class="text-center text-muted">Henüz kullanıcı yok.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
